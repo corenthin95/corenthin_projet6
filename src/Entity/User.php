@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
 #[Table(name: 'corenthin_projet6_user')]
@@ -29,6 +31,10 @@ class User
 
     #[Column(type: 'json')]
     private array $roles;
+
+    #[ManyToOne(targetEntity: 'App\Entity\Media')]
+    #[JoinColumn(name: 'media_id', referencedColumnName: 'id', nullable: true)]
+    private Media $media;
 
     public function __construct()
     {
@@ -58,6 +64,11 @@ class User
     public function getRoles(): array
     {
         return $this->roles;
+    }
+
+    public function getMedia()
+    {
+        return $this->media;
     }
 
     /**
@@ -92,6 +103,18 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of media
+     *
+     * @return  self
+     */ 
+    public function setMedia($media)
+    {
+        $this->media = $media;
 
         return $this;
     }
