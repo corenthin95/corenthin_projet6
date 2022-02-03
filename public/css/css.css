@@ -17,16 +17,15 @@ nav {
 /**** Homepage ****/
 #backgroundHome {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("../img/snow1.jpg");
-    height: 920px;
+    height: 925px;
     background-size: cover;
     background-position: center;
 }
 
-#backgroundHome a {
+#backgroundHome img {
     position: relative;
-    top: 58%;
-    left: 90%;
-    
+    top: 60%;
+    left: 85%;
 }
 #tricksCatch {
     position: relative;
@@ -36,7 +35,7 @@ nav {
     color: white;
     font-weight: 400;
 }
-
+ 
 #line1 {
     font-size: 6rem;
 }
@@ -65,6 +64,24 @@ nav {
 
 #tricksListButtons {
     line-height: 0.5;
+}
+
+@media screen and (max-width: 450px) {
+    #tricksList {
+        padding: 5% 10% 0 10%;
+    }
+
+    #tricksList .card-body {
+        padding: 2% 7% 2% 7%;
+    }
+
+    #tricksList .card-body h3 {
+        font-size: 3.5rem;
+    }
+
+    #tricksListButtons img {
+        height: 80px;
+    }
 }
 
 /**** Footer ****/

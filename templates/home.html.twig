@@ -6,17 +6,17 @@
             <p id="line1">ALL THE TRICKS </p>
             <p id="line2">you need to know.</p>
         </div>
-        <a href="#tricksList"><img src="../img/icons8-down-arrow-100.png"></a>
+        <a href="/#tricksList"><img src="../img/icons8-down-arrow-100.png"></a>
     </section>
     <section id="tricksList">
         <div class="container-fluid">
             <div class="row">
                 {% for tricks in tricks %}
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-xs-12">
                     <div class="card">
                         <img class="card-img-top" src="https://img.redbull.com/images/c_crop,w_1920,h_960,x_0,y_120,f_auto,q_auto/c_scale,w_1200/redbullcom/2021/2/9/lo3b9oljjxcp3mlt2xtd/steep-meilleurs-jeux-video-snowboard" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">{{ tricks.name }}</h5>
+                            <h3 class="card-title">{{ tricks.name }}</h3>
                             <div id="tricksListButtons">
                                 <a href="#"><img src="../img/icons8-edit-24.png"></a>
                                 <a href="#"><img src="../img/icons8-trash-can-24.png"></a>
