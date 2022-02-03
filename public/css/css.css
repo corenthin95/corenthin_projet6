@@ -22,9 +22,15 @@ nav {
     background-position: center;
 }
 
- #tricksCatch {
-    position: absolute;
-    top: 40%;
+#backgroundHome a {
+    position: relative;
+    top: 58%;
+    left: 90%;
+    
+}
+#tricksCatch {
+    position: relative;
+    top: 39%;
     width: 100%;
     text-align: center;
     color: white;
