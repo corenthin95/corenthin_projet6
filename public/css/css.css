@@ -1,8 +1,79 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #3b3b3b; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+/**** Header ****/
+nav {
+    font-weight: 300;
+    padding: 0 3% 0 3%;
+}
+
+/**** Homepage ****/
+#backgroundHome {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("../img/snow1.jpg");
+    height: 920px;
+    background-size: cover;
+    background-position: center;
+}
+
+ #tricksCatch {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+}
+
+#line1 {
+    font-size: 6rem;
+}
+
+#line2 {
+    font-size: 4rem;
+    line-height: 0;
+}
+
+#tricksList {
+    padding: 3% 3% 0 3%;
+    margin-bottom: 5%;
+}
+
+#tricksList .card {
+    margin-top: 5%;
+    border: none;
+    background-color: #eeeeee;
+    border-radius: 2%;
+}
+
+#tricksList .card-body {
+    display: flex;
+    justify-content: space-between;
+}
+
+#tricksListButtons {
+    line-height: 0.5;
+}
+
+/**** Footer ****/
+footer {
+    padding:15px;
+    background:#333;
+    color:#fff;
+  }
+
+/**** Carousel ****/
 li {
     display: inline-block;
 }
 
-img {
+#img-carousel {
     height: auto;
     margin-bottom: .5rem;
     max-width: calc(100% + 2rem);
@@ -11,9 +82,6 @@ img {
     right: -1rem;
 }
 
-/********************************
-* Carousel styles
-*********************************/
 .carousel-items {
     display: flex;
     overflow-x: scroll;
@@ -41,10 +109,6 @@ img {
     border-radius: 3px;
 }
 
-
-/********************************
-* Breakpoints
-*********************************/
 @media screen and (min-width: 576px) {
     .carousel-item {
         flex-basis: 300px;
