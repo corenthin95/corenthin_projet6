@@ -10,27 +10,83 @@ body {
 
 /**** Header ****/
 nav {
+    background-color: rgb(54, 54, 54);
     font-weight: 300;
-    padding: 0 3% 0 3%;
+    padding: 1% 3% 1% 3%;
+    width: 100%;
+    overflow: auto;
+
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav i {
+    visibility: hidden;
+}
+
+nav li {
+    list-style: none;
+    padding-left: 1%;
+    margin-top: 0.5%;
+}
+
+nav a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+
+    /* nav {
+        position: -webkit-sticky;
+	    position: sticky;
+        top: 0;
+        z-index: 9;
+    } */
+
+    nav {
+        position: fixed;
+        bottom: 0;
+        z-index: 9;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 3% 0 3% 0;
+        margin: 0;
+    }
+    nav li {
+        padding: 0;
+    }
+
+    nav span {
+        display: none;
+    }
+    nav i {
+        visibility: visible;
+    }
 }
 
 /**** Homepage ****/
 #backgroundHome {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("../img/snow1.jpg");
-    height: 925px;
+    height: 100vh;
     background-size: cover;
     background-position: center;
 }
 
-#backgroundHome img {
-    position: relative;
-    top: 60%;
-    left: 85%;
-}
 #tricksCatch {
     position: relative;
-    top: 39%;
-    width: 100%;
+    top: 30%;
     text-align: center;
     color: white;
     font-weight: 400;
@@ -43,6 +99,17 @@ nav {
 #line2 {
     font-size: 4rem;
     line-height: 0;
+}
+
+#tricksArrowDown {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+#tricksArrowDown i {
+    font-size: 8rem;
+    color: white;
 }
 
 #tricksList {
@@ -60,13 +127,36 @@ nav {
 #tricksList .card-body {
     display: flex;
     justify-content: space-between;
+    margin-top: 2%;
+    
 }
 
-#tricksListButtons {
-    line-height: 0.5;
-}
+@media screen and (max-width: 767px) {
+    #backgroundHome {
+        height: 100vh;
+    }
 
-@media screen and (max-width: 450px) {
+    #tricksCatch {
+        top: 35%;
+    }
+
+    #line1 {
+        font-size: 4rem;
+        line-height: 1.1;
+    }
+
+    #line2 {
+        font-size: 2rem;
+    }
+
+    #tricksArrowDown {
+        bottom: 9%;
+    }
+
+    #tricksArrowDown i {
+        font-size: 5rem;
+    }
+    
     #tricksList {
         padding: 5% 10% 0 10%;
     }
@@ -74,25 +164,18 @@ nav {
     #tricksList .card-body {
         padding: 2% 7% 2% 7%;
     }
-
-    #tricksList .card-body h3 {
-        font-size: 3.5rem;
-    }
-
-    #tricksListButtons img {
-        height: 80px;
-    }
 }
 
 /**** Footer ****/
-footer {
-    padding:15px;
-    background:#333;
+footer div{
+    clear: both;
+    padding: 1% 3% 1% 3%;
+    background:rgb(29, 29, 29);
     color:#fff;
   }
 
 /**** Carousel ****/
-li {
+.carousel li {
     display: inline-block;
 }
 
