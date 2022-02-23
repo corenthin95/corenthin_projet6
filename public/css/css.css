@@ -386,6 +386,95 @@ nav a:hover {
     }
 }
 
+/**** Registration / Login ****/
+#trickSecurity {
+    background: linear-gradient(rgb(201, 201, 201), rgb(240, 240, 240), rgba(255, 255, 255));
+
+}
+
+#trickSecurity .container {
+    padding-top: 4%;
+    text-align: center;
+}
+
+#trickSecurityForm {
+    margin: 4% 20% 0 20%;
+
+}
+
+#trickSecurityInput {
+    padding-top: 5%;
+}
+
+#trickSecurityInput input {
+    background: rgba(255, 255, 255, 0);
+    width: 35%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(29, 29, 29);
+    font-size: 1rem;
+}
+
+#trickSecurityButton {
+    padding-top: 5%;
+}
+
+#trickSecurityButton button{
+    width: 35%;
+}
+
+#trickSecurityAlready {
+    margin-top: 3%;
+}
+
+#trickSecurityAlready a {
+    color:#000000;
+    text-decoration: none;
+}
+
+#trickSecurityAlready a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+    #trickSecurity .container {
+        padding-top: 40%;
+    }
+
+    #trickSecurityForm {
+        margin: 10% 20% 0 20%;
+    
+    }
+
+    #trickSecurityInput {
+        padding-top: 10%;
+    }
+
+    #trickSecurityInput input {
+        width: 90%;
+    }
+
+    #trickSecurityButton {
+        padding-top: 10%;
+    }
+
+    #trickSecurityButton button{
+        width: 90%;
+        font-size: .9rem;
+    }
+
+    #trickSecurityAlready {
+        margin-top: 6%;
+    }
+    
+    #trickSecurityAlready a {
+        font-size: .9rem;
+    }
+}
+
+
+
+
 /**** Footer ****/
 footer div{
     clear: both;
