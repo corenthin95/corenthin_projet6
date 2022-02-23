@@ -117,6 +117,16 @@ nav a:hover {
     margin-bottom: 5%;
 }
 
+#tricksList a {
+    color: #4b4b4b;
+    text-decoration-line: none;
+}
+
+#tricksList a:hover {
+    color: #1f1f1f;
+    text-decoration-line: underline;
+}
+
 #tricksList .card {
     margin-top: 5%;
     border: none;
@@ -163,6 +173,216 @@ nav a:hover {
 
     #tricksList .card-body {
         padding: 2% 7% 2% 7%;
+    }
+}
+
+/**** Specific Trick ****/
+#backgroundTrick {
+    background: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)), url("https://img.redbull.com/images/c_crop,w_1920,h_960,x_0,y_120,f_auto,q_auto/c_scale,w_1200/redbullcom/2021/2/9/lo3b9oljjxcp3mlt2xtd/steep-meilleurs-jeux-video-snowboard");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+#trickDisplay {
+    margin-top: 8%;
+    padding-bottom: 8%;
+}
+
+#trickSpecificName {
+    padding: .5% 4% 0 4%;
+    background-color: rgb(12, 12, 12, 0.5);
+    width: 20%;
+    position: absolute;
+    bottom: 12%;
+}
+
+#trickSpecificName h1 {
+    text-align: center;
+    color: white;
+}
+
+#trickSpecifiedButtons {
+    padding: .5% 0 .5% 0;
+    background: rgba(12, 12, 12, 0.5);
+    width: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 27%;
+    right: 17%;
+}
+
+#trickSpecifiedButtons i {
+    color: #ffffff;
+}
+
+#trickSpecifiedButtons i:hover {
+    color: #c2c2c2;
+}
+
+#trickInfo {
+    background: linear-gradient(rgb(238, 238, 238), rgba(255, 255, 255));
+    padding: 0 3% 5% 3%;
+}
+
+#featuredImg {
+    background-size: cover;
+    width: 100%;
+}
+
+#trickInfo p {
+    text-align: justify;
+    padding: 3% 5% 3% 5%;
+}
+
+#trickInfoDetails {
+    text-align: center;
+    margin-bottom: 5%;
+    font-size: 0.9rem;
+}
+
+#trickInfoDetails small {
+    padding: 0.4% 1% 0.4% 1%;
+    border-radius: 35px;
+    background-color: #4d4d4d;
+    color: rgb(255, 255, 255);
+}
+
+#trickInfoLeavingComment {
+    margin: 0 10% 0 10%;
+    padding: 4% 0 4% 0;
+    border-top: 0.1rem solid;
+    border-bottom: 0.1rem solid;
+}
+
+#trickTextarea{ 
+    display: flex;
+    justify-content: center;
+}
+
+#trickTextarea textarea {
+    min-height: 2.3rem;
+    height: 2.3rem;
+    width: 40%;
+    margin: 0 2% 0 2%;
+}
+
+#trickCommentList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+#trickCommentList img {
+    vertical-align: middle;
+    width: auto;
+    height: 5rem;
+    border-radius: 50%;
+}
+
+#trickCommentList .card-footer {
+    padding: 0.5%;
+}
+
+#trickCommentList .card {
+    padding: 0;
+    width: 40%;
+}
+
+#trickCommentList .card-header {
+    padding: 0.7% 0 0.7% 2%;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+#trickCommentList .card-text {
+    padding: 1% 2% 1% 2%;
+    font-size: 1rem;
+
+}
+
+#trickCommentList small {
+    font-size: 0.8rem;
+}
+
+#trickCommentLoad {
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 767px) {
+    #trickSpecificName {
+        background-color: rgb(12, 12, 12, 0.5);
+        position: absolute;
+        bottom: 76%;
+        width: 50%;
+        padding-top: 1.5%;
+    }
+    #trickSpecifiedButtons {
+        width: 15%;
+        position: absolute;
+        top: 5%;
+        right: 6%;
+    }
+
+    #trickSpecifiedButtons i {
+        font-size: 1rem;;
+    }
+
+    #trickInfo {
+        font-size: .9rem;
+    }
+
+    #trickInfoDetails small {
+        font-size: .6rem;
+    }
+
+    #trickInfoLeavingComment {
+        margin: 0;
+    }
+    
+    #trickTextarea textarea {
+        font-size: .9rem;
+    }
+
+    #trickTextarea button {
+        max-height: 2.3rem;
+        font-size: .9rem;
+    }
+    #trickCommentList {
+        display: flex;
+        justify-content: center;
+    }
+    
+    #trickCommentList img {
+        vertical-align: middle;
+        height: 3rem;
+    }
+    
+    #trickCommentList .card-footer {
+        padding: 0.5%;
+    }
+    
+    #trickCommentList .card {
+        padding: 0;
+        width: 75%;
+    }
+    
+    #trickCommentList .card-header {
+        font-size: .9rem;
+    }
+    
+    #trickCommentList .card-text {
+        padding: 1% 2% 1% 2%;
+        font-size: .8rem;
+    
+    }
+    
+    #trickCommentLoad button {
+        font-size: .9rem;
     }
 }
 

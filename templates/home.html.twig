@@ -19,10 +19,10 @@
                     <div class="card">
                         <img class="card-img-top" src="https://img.redbull.com/images/c_crop,w_1920,h_960,x_0,y_120,f_auto,q_auto/c_scale,w_1200/redbullcom/2021/2/9/lo3b9oljjxcp3mlt2xtd/steep-meilleurs-jeux-video-snowboard" alt="Card image cap">
                         <div class="card-body">
-                            <h3 class="card-title">{{ tricks.name }}</h3>
+                            <a href="{{ path('show_trick', {id: tricks.id}) }}"><h3 class="card-title">{{ tricks.name }}</h3></a>
                             <div id="tricksListButtons">
-                                <i href="#" class="fa-solid fa-pen"></i>
-                                <i class="fa-solid fa-trash"></i>
+                                <a href="#"><i href="#" class="fa-solid fa-pen"></i></a>
+                                <a href="#"><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </div>
                     </div>
