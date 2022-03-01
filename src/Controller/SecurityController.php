@@ -14,4 +14,10 @@ class SecurityController extends AbstractController {
     {
         return $this->render('security/registration.html.twig');
     }
+
+    #[Route('/login', name: 'login', methods: ['GET', 'POST'])]
+    public function login(UserRepository $userRepository): Response
+    {
+        return $this->render('security/login.html.twig');
+    }
 }
