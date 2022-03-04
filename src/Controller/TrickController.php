@@ -15,4 +15,12 @@ class TrickController extends AbstractController
         $trick = $trickRepository->find($id);
         return $this->render('tricks/trick.html.twig', ['trick' => $trick]);
     }
+
+    #[Route ('/trick/edit/{id}', name:'edit_trick', methods: ['GET', 'POST'])]
+    public function editTrick(string $id, TrickRepository $trickRepository): Response   
+    {
+        $trick = $trickRepository->find($id);
+        return $this->render('tricks/editTrick.html.twig', ['trick' => $trick]);
+
+    }
 }
