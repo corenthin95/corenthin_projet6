@@ -10,13 +10,13 @@
                     <h1>{{ trick.name }}</h1>
                 </div>
                 <div id="trickSpecifiedButtons">
-                    <a href="{{ path('edit_trick', {id: trick.id}) }}"><i href="#" class="fa-solid fa-pen"></i></a>
+                    <a href="{{ path('edit_trick', {id: trick.id}) }}"><i class="fa-solid fa-pen"></i></a>
                     <a href="#"><i class="fa-solid fa-trash"></i></a>
                 </div>
             </div>
             
             <div class="container" id="trickInfo">
-                {% include 'parts/_carousel.html.twig' %}
+                {% include 'parts/carousel/_carousel.html.twig' %}
                 <p>
                     {{ trick.description }}
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
