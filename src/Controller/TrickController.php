@@ -23,4 +23,10 @@ class TrickController extends AbstractController
         return $this->render('tricks/editTrick.html.twig', ['trick' => $trick]);
 
     }
+
+    #[Route ('/new-trick', name:'new_trick', methods: ['GET', 'POST'])]
+    public function newTrick(): Response 
+    {
+        return $this->render('tricks/newTrick.html.twig');
+    }
 }
