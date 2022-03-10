@@ -17,23 +17,25 @@
             
             <div class="container" id="trickInfo">
                 {% include 'parts/carousel/_carousel.html.twig' %}
-                <div id="trickInfoEdit">
-                    <div id="trickInfoEditName">
-                        <input value={{ trick.name }}>
+                <form method="POST">
+                    <div id="trickInfoEdit">
+                        <div id="trickInfoEditName">
+                            <input value={{ trick.name }}>
+                        </div>
+                        <div id="trickInfoEditContent">
+                            <textarea>{{ trick.description }}</textarea>
+                        </div>
+                        <div id="trickInfoEditCategory">
+                            <select>
+                                <option value="Category 1">Category 1</option>
+                            </select>
+                        </div>
+                        <div id="trickInfoEditButtons">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-secondary">Save</button>
+                        </div>
                     </div>
-                    <div id="trickInfoEditContent">
-                        <textarea>{{ trick.description }}</textarea>
-                    </div>
-                    <div id="trickInfoEditCategory">
-                        <select>
-                            <option value="Category 1">Category 1</option>
-                        </select>
-                    </div>
-                    <div id="trickInfoEditButtons">
-                        <button type="button" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-secondary">Save</button>
-                    </div>
-                </div>
+                <form>
             </div>
         </div>
     </section>
