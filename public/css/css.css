@@ -136,7 +136,7 @@ nav a:hover {
 
 #tricksList .card-body {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 2%;
     
 }
@@ -413,6 +413,12 @@ nav a:hover {
 
 #trickInfoEditButtons button {
     margin-left: 2%;
+}
+
+@media screen and (max-width: 767px) {
+    #trickInfoEdit {
+        padding: 5%;
+    }
 }
 
 /**** Forgot Password / Retrive Password ****/

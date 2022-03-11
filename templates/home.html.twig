@@ -9,12 +9,14 @@
         <div id="tricksArrowDown">
             <a href="/#tricksList"><i class="fa-solid fa-arrow-down"></i></a>
         </div>
-        
     </section>
+
     <section id="tricksList">
         <div class="container-fluid">
+            <div>
+                <a href="{{ path('new_trick') }}"><button type="button" class="btn btn-secondary">New Trick</button><a>
+            </div>
             <div class="row">
-                <a href="{{ path('new_trick') }}"><button>New Trick</button><a>
                 {% for tricks in tricks %}
                 <div class="col-lg-3 col-xs-12">
                     <div class="card">
