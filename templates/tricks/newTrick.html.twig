@@ -2,27 +2,25 @@
 
 {% block body %}
     <section>
-        <div class="container">
-            <div class="container" id="trickInfo">
-                <form method="POST">
-                    <div id="trickInfoEdit">
-                        <div id="trickInfoEditName">
-                            <input placeholder="Name">
-                        </div>
-                        <div id="trickInfoEditContent">
-                            <textarea placeholder="Description"></textarea>
-                        </div>
-                        <div id="trickInfoEditCategory">
-                            <select>
-                                <option value="Category 1">Category 1</option>
-                            </select>
-                        </div>
-                        <div id="trickInfoEditButtons">
-                            <button type="button" class="btn btn-secondary">Create</button>
-                        </div>
+        <div class="container" id="trickInfo">
+            <form method="POST">
+                <div id="trickInfoEdit">
+                    <div id="trickInfoEditName">
+                        <input placeholder="Name">
                     </div>
-                <form>
-            </div>
+                    <div id="trickInfoEditContent">
+                        <textarea placeholder="Description"></textarea>
+                    </div>
+                    <div id="trickInfoEditCategory">
+                        <select>
+                            <option value="Category 1">Category 1</option>
+                        </select>
+                    </div>
+                    <div id="trickInfoEditButtons">
+                        <button type="button" class="btn btn-secondary">Create</button>
+                    </div>
+                </div>
+            <form>
         </div>
     </section>
 {% endblock %}

@@ -386,7 +386,7 @@ nav a:hover {
     }
 }
 
-/**** Edit Trick ****/
+/**** New / Edit Trick ****/
 #trickInfoEdit {
     display: flex;
     flex-direction: column;
