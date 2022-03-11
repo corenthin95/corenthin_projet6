@@ -26,4 +26,10 @@ class SecurityController extends AbstractController {
     {
         return $this->render('security/forgotPassword.html.twig');
     }
+
+    #[Route('/recover-password', name: 'recover_password', methods: ['GET', 'POST'])]
+    public function recoverPassword(): Response
+    {
+        return $this->render('security/recoverPassword.html.twig');
+    }
 }

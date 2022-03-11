@@ -416,20 +416,30 @@ nav a:hover {
 }
 
 /**** Forgot Password / Retrive Password ****/
-#forgotPassword {
+#forgotRecovPassword {
     padding: 2% 5% 0 2%;
     display: flex;
     flex-direction: column;
 }
 
-#forgotPassword input {  
+#forgotRecovPassword input {  
     width: 25%;
     font-size: 1rem;
 }
 
-#forgotPassword button {
+#forgotRecovPassword button {
     width: 4%;
     margin-top: .7%;
+}
+
+@media screen and (max-width: 767px) {
+    #forgotRecovPassword input {
+        width: 100%;
+    }
+
+    #forgotRecovPassword button {
+        width: 20%;
+    }
 }
 
 /**** Registration / Login ****/
