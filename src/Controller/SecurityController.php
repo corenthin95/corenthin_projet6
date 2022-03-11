@@ -20,4 +20,10 @@ class SecurityController extends AbstractController {
     {
         return $this->render('security/login.html.twig');
     }
+
+    #[Route('/forgot-password', name: 'forgot_password', methods: ['GET', 'POST'])]
+    public function forgotPassword(): Response
+    {
+        return $this->render('security/forgotPassword.html.twig');
+    }
 }

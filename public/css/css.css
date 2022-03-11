@@ -415,6 +415,23 @@ nav a:hover {
     margin-left: 2%;
 }
 
+/**** Forgot Password / Retrive Password ****/
+#forgotPassword {
+    padding: 2% 5% 0 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+#forgotPassword input {  
+    width: 25%;
+    font-size: 1rem;
+}
+
+#forgotPassword button {
+    width: 4%;
+    margin-top: .7%;
+}
+
 /**** Registration / Login ****/
 #trickSecurity {
     background: linear-gradient(rgb(201, 201, 201), rgb(240, 240, 240), rgba(255, 255, 255));
