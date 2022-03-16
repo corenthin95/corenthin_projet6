@@ -2,15 +2,15 @@
 
 namespace App\Repository;
 
-use App\Entity\Trick;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class TrickRepository extends ServiceEntityRepository
+class CategoryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Trick::class);
+        parent::__construct($registry, Category::class);
     }
 
     public function findCategoryByTrick(int $trickId)
@@ -24,6 +24,5 @@ class TrickRepository extends ServiceEntityRepository
             WHERE t.id = :id'
         )->setParameter('id', $trickId);
 
-        return $query->getOneOrNullResult();
     }
 }
