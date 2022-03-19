@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section id="trickSecurity">
+        <div class="container">
+            <h1>Registration</h1>
+            <form method="post" id="trickSecurityForm">
+                <div id="trickSecurityInput">
+                    <h3>Username</h3>
+                    <input>
+                </div>
+                <div id="trickSecurityInput">
+                    <h3>Email</h3>
+                    <input>
+                </div>
+                <div id="trickSecurityInput">
+                    <h3>Password</h3>
+                    <input type="password">
+                </div>
+                <div id="trickSecurityButton">
+                    <button type="button" class="btn btn-secondary">Create an account</button>
+                </div>
+                <div id="trickSecurityAlready">
+                    <a href="{{ path('login') }}">Already have an account ?</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

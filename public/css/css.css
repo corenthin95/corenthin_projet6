@@ -1,0 +1,649 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #3b3b3b; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+/**** Header ****/
+nav {
+    background-color: rgb(54, 54, 54);
+    font-weight: 300;
+    padding: 1% 3% 1% 3%;
+    width: 100%;
+    overflow: auto;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav i {
+    visibility: hidden;
+}
+
+nav li {
+    list-style: none;
+    padding-left: 1%;
+    margin-top: 0.5%;
+}
+
+nav a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+
+    /* nav {
+        position: -webkit-sticky;
+	    position: sticky;
+        top: 0;
+        z-index: 9;
+    } */
+
+    nav {
+        position: fixed;
+        bottom: 0;
+        z-index: 9999;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 3% 0 3% 0;
+        margin: 0;
+    }
+    nav li {
+        padding: 0;
+    }
+
+    nav span {
+        display: none;
+    }
+    nav i {
+        visibility: visible;
+    }
+}
+
+/**** Homepage ****/
+#backgroundHome {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("../img/snow1.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+#tricksCatch {
+    position: relative;
+    top: 30%;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+}
+ 
+#line1 {
+    font-size: 6rem;
+}
+
+#line2 {
+    font-size: 4rem;
+    line-height: 0;
+}
+
+#tricksArrowDown {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+#tricksArrowDown i {
+    font-size: 8rem;
+    color: white;
+}
+
+#tricksList {
+    padding: 3% 3% 0 3%;
+    margin-bottom: 5%;
+}
+
+#tricksList a {
+    color: #4b4b4b;
+    text-decoration-line: none;
+}
+
+#tricksList a:hover {
+    color: #1f1f1f;
+    text-decoration-line: underline;
+}
+
+#tricksList .card {
+    margin-top: 5%;
+    border: none;
+    background-color: #eeeeee;
+    border-radius: 2%;
+}
+
+#tricksList .card-body {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+    
+}
+
+@media screen and (max-width: 767px) {
+    #backgroundHome {
+        height: 100vh;
+    }
+
+    #tricksCatch {
+        top: 35%;
+    }
+
+    #line1 {
+        font-size: 4rem;
+        line-height: 1.1;
+    }
+
+    #line2 {
+        font-size: 2rem;
+    }
+
+    #tricksArrowDown {
+        bottom: 9%;
+    }
+
+    #tricksArrowDown i {
+        font-size: 5rem;
+    }
+    
+    #tricksList {
+        padding: 5% 10% 0 10%;
+    }
+
+    #tricksList .card-body {
+        padding: 2% 7% 2% 7%;
+    }
+}
+
+/**** Specific Trick ****/
+#backgroundTrick {
+    background-size: cover;
+    background-position: center;
+}
+
+#trickDisplay {
+    margin-top: 8%;
+    padding-bottom: 8%;
+}
+
+#trickSpecificName {
+    padding: .5% 4% 0 4%;
+    background-color: rgb(12, 12, 12, 0.5);
+    width: 20%;
+    position: absolute;
+    bottom: 12%;
+}
+
+#trickSpecificName h1 {
+    text-align: center;
+    color: white;
+}
+
+#trickSpecifiedButtons {
+    padding: .5% 0 .5% 0;
+    background: rgba(12, 12, 12, 0.5);
+    width: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 27%;
+    right: 17%;
+}
+
+#trickSpecifiedButtons i {
+    color: #ffffff;
+}
+
+#trickSpecifiedButtons i:hover {
+    color: #c2c2c2;
+}
+
+#trickInfo {
+    background: linear-gradient(rgb(238, 238, 238), rgba(255, 255, 255));
+    padding: 0 3% 5% 3%;
+}
+
+#featuredImg {
+    background-size: cover;
+    width: 100%;
+}
+
+#trickInfo p {
+    text-align: justify;
+    padding: 3% 5% 3% 5%;
+}
+
+#trickInfoDetails {
+    text-align: center;
+    margin-bottom: 5%;
+    font-size: 0.9rem;
+}
+
+#trickInfoDetails small {
+    padding: 0.4% 1% 0.4% 1%;
+    border-radius: 35px;
+    background-color: #4d4d4d;
+    color: rgb(255, 255, 255);
+}
+
+#trickInfoLeavingComment {
+    margin: 0 10% 0 10%;
+    padding: 4% 0 4% 0;
+    border-top: 0.1rem solid;
+    border-bottom: 0.1rem solid;
+}
+
+#trickTextarea{ 
+    display: flex;
+    justify-content: center;
+}
+
+#trickTextarea textarea {
+    min-height: 2.3rem;
+    height: 2.3rem;
+    width: 40%;
+    margin: 0 2% 0 2%;
+}
+
+#trickCommentList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+#trickCommentList img {
+    vertical-align: middle;
+    width: auto;
+    height: 5rem;
+    border-radius: 50%;
+}
+
+#trickCommentList .card-footer {
+    padding: 0.5%;
+}
+
+#trickCommentList .card {
+    padding: 0;
+    width: 40%;
+}
+
+#trickCommentList .card-header {
+    padding: 0.7% 0 0.7% 2%;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+#trickCommentList .card-text {
+    padding: 1% 2% 1% 2%;
+    font-size: 1rem;
+
+}
+
+#trickCommentList small {
+    font-size: 0.8rem;
+}
+
+#trickCommentLoad {
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 767px) {
+    #trickSpecificName {
+        background-color: rgb(12, 12, 12, 0.5);
+        position: absolute;
+        bottom: 76%;
+        width: 50%;
+        padding-top: 1.5%;
+    }
+    #trickSpecifiedButtons {
+        width: 15%;
+        position: absolute;
+        top: 5%;
+        right: 6%;
+    }
+
+    #trickSpecifiedButtons i {
+        font-size: 1rem;;
+    }
+
+    #trickInfo {
+        font-size: .9rem;
+    }
+
+    #trickInfoDetails small {
+        font-size: .6rem;
+    }
+
+    #trickInfoLeavingComment {
+        margin: 0;
+    }
+    
+    #trickTextarea textarea {
+        font-size: .9rem;
+    }
+
+    #trickTextarea button {
+        max-height: 2.3rem;
+        font-size: .9rem;
+    }
+    #trickCommentList {
+        display: flex;
+        justify-content: center;
+    }
+    
+    #trickCommentList img {
+        vertical-align: middle;
+        height: 3rem;
+    }
+    
+    #trickCommentList .card-footer {
+        padding: 0.5%;
+    }
+    
+    #trickCommentList .card {
+        padding: 0;
+        width: 75%;
+    }
+    
+    #trickCommentList .card-header {
+        font-size: .9rem;
+    }
+    
+    #trickCommentList .card-text {
+        padding: 1% 2% 1% 2%;
+        font-size: .8rem;
+    
+    }
+    
+    #trickCommentLoad button {
+        font-size: .9rem;
+    }
+}
+
+/**** New / Edit Trick ****/
+#trickInfoEdit {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 22.5% 5% 22.5%;
+}
+
+#trickInfoEdit div {
+    margin: 2.5% 0 2.5% 0;
+}
+
+#trickInfoEditName input {
+    width: 75%;
+}
+
+#trickInfoEditContent textarea {
+    width: 100%;
+    height: 10rem;
+}
+
+#trickInfoEditButtons {
+    display: flex;
+    justify-content: end;
+}
+
+#trickInfoEditButtons button {
+    margin-left: 2%;
+}
+
+@media screen and (max-width: 767px) {
+    #trickInfoEdit {
+        padding: 5%;
+    }
+}
+
+/**** Forgot Password / Retrive Password ****/
+#forgotRecovPassword {
+    padding: 2% 5% 0 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+#forgotRecovPassword input {  
+    width: 25%;
+    font-size: 1rem;
+}
+
+#forgotRecovPassword button {
+    width: 4%;
+    margin-top: .7%;
+}
+
+@media screen and (max-width: 767px) {
+    #forgotRecovPassword input {
+        width: 100%;
+    }
+
+    #forgotRecovPassword button {
+        width: 20%;
+    }
+}
+
+/**** Registration / Login ****/
+#trickSecurity {
+    background: linear-gradient(rgb(201, 201, 201), rgb(240, 240, 240), rgba(255, 255, 255));
+
+}
+
+#trickSecurity .container {
+    padding-top: 4%;
+    text-align: center;
+}
+
+#trickSecurityForm {
+    margin: 4% 20% 0 20%;
+
+}
+
+#trickSecurityInput {
+    padding-top: 5%;
+}
+
+#trickSecurityInput input {
+    background: rgba(255, 255, 255, 0);
+    width: 35%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(29, 29, 29);
+    font-size: 1rem;
+}
+
+#trickSecurityButton {
+    padding-top: 5%;
+}
+
+#trickSecurityButton button{
+    width: 35%;
+}
+
+#trickSecurityAlready {
+    margin-top: 3%;
+}
+
+#trickSecurityAlready a {
+    color:#000000;
+    text-decoration: none;
+}
+
+#trickSecurityAlready a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+    #trickSecurity .container {
+        padding-top: 40%;
+    }
+
+    #trickSecurityForm {
+        margin: 15% 20% 0 20%;
+    
+    }
+
+    #trickSecurityInput {
+        padding-top: 10%;
+    }
+
+    #trickSecurityInput input {
+        width: 90%;
+    }
+
+    #trickSecurityButton {
+        padding-top: 10%;
+    }
+
+    #trickSecurityButton button{
+        width: 90%;
+        font-size: .9rem;
+    }
+
+    #trickSecurityAlready {
+        margin-top: 6%;
+    }
+    
+    #trickSecurityAlready a {
+        font-size: .9rem;
+    }
+}
+
+
+
+
+/**** Footer ****/
+footer div{
+    padding: 1% 3% 1% 3%;
+    background:rgb(29, 29, 29);
+    color:#fff;
+  }
+
+/**** Carousel ****/
+
+.carousel {
+    position: relative;
+  }
+  .carousel-item img {
+    object-fit: cover;
+  }
+  #carousel-thumbs {
+    background: rgba(255,255,255,.3);
+    bottom: 0;
+    left: 0;
+    padding: 0 50px;
+    right: 0;
+  }
+  #carousel-thumbs img {
+    border: 5px solid transparent;
+    cursor: pointer;
+  }
+  #carousel-thumbs img:hover {
+    border-color: rgba(255,255,255,.3);
+  }
+  #carousel-thumbs .selected img {
+    border-color: #fff;
+  }
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 50px;
+  }
+  @media all and (max-width: 767px) {
+    .carousel-container #carousel-thumbs img {
+      border-width: 3px;
+    }
+  }
+  @media all and (min-width: 576px) {
+    .carousel-container #carousel-thumbs {
+      position: absolute;
+    }
+  }
+  @media all and (max-width: 576px) {
+    .carousel-container #carousel-thumbs {
+      background: #ccccce;
+    }
+  }
+
+
+/* .carousel li {
+    display: inline-block;
+}
+
+#img-carousel {
+    height: auto;
+    margin-bottom: .5rem;
+    max-width: calc(100% + 2rem);
+    position: relative;
+    left: -1rem;
+    right: -1rem;
+}
+
+.carousel-items {
+    display: flex;
+    overflow-x: scroll;
+    padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+    flex: 1 0 250px;
+    margin-left: 1rem;
+    scroll-snap-align: start;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #bdbdbd;
+}
+
+::-webkit-scrollbar {
+    height: 6px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #3d4852;
+    border-radius: 3px;
+}
+
+@media screen and (min-width: 576px) {
+    .carousel-item {
+        flex-basis: 300px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+
+    .carousel-item {
+        flex-basis: 325px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+   
+    .carousel-item {
+        flex-basis: 450px;
+    }
+}
+ */

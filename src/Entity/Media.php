@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -11,34 +10,28 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-#[Table(name: 'corenthin_projet6_comment')]
-#[Entity(repositoryClass: CommentRepository::class)]
+#[Table(name: 'corenthin_projet6_media')]
+#[Entity()]
 
-class Comment
+class Media
 {
     #[Id]
     #[Column(type: 'integer')]
     #[GeneratedValue(strategy: 'AUTO')]
     private int $id;
 
-    #[Column(type: 'datetime')]
-    private \DateTime $createdAt;
+    #[Column(type: 'string')]
+    private string $type;
 
-    #[Column(type: 'text')]
-    private string $content;
+    #[Column(type: 'string')]
+    private string $path;
 
-    #[ManyToOne(targetEntity: 'App\Entity\User')]
-    #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
-    private User $user;
+    #[Column(type: 'string', nullable: true)]
+    private string $alt;
 
     #[ManyToOne(targetEntity: 'App\Entity\Trick')]
-    #[JoinColumn(name: 'trick_id', referencedColumnName: 'id')]
+    #[JoinColumn(name: 'trick_id', referencedColumnName: 'id', nullable: true)]
     private Trick $trick;
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime;
-    }
 
     /**
      * Get the value of id
@@ -49,27 +42,27 @@ class Comment
     }
 
     /**
-     * Get the value of createdAt
+     * Get the value of type
      */ 
-    public function getCreatedAt()
+    public function getType()
     {
-        return $this->createdAt;
+        return $this->type;
     }
 
     /**
-     * Get the value of content
+     * Get the value of path
      */ 
-    public function getContent()
+    public function getPath()
     {
-        return $this->content;
+        return $this->path;
     }
 
     /**
-     * Get the value of user
+     * Get the value of alt
      */ 
-    public function getUser()
+    public function getAlt()
     {
-        return $this->user;
+        return $this->alt;
     }
 
     /**
@@ -81,25 +74,37 @@ class Comment
     }
 
     /**
-     * Set the value of content
+     * Set the value of type
      *
      * @return  self
      */ 
-    public function setContent($content)
+    public function setType($type)
     {
-        $this->content = $content;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Set the value of user
+     * Set the value of path
      *
      * @return  self
      */ 
-    public function setUser($user)
+    public function setPath($path)
     {
-        $this->user = $user;
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of alt
+     *
+     * @return  self
+     */ 
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
 
         return $this;
     }

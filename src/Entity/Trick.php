@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
 #[Table(name: 'corenthin_projet6_trick')]
-#[Entity()]
+#[Entity(repositoryClass: TrickRepository::class)]
 class Trick
 {
     #[Id]
@@ -51,6 +51,11 @@ class Trick
         $this->updatedAt = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+    
     /**
      * Get the value of id
      */ 
