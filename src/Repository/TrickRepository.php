@@ -13,17 +13,14 @@ class TrickRepository extends ServiceEntityRepository
         parent::__construct($registry, Trick::class);
     }
 
-    public function findCategoryByTrick(int $trickId)
+    public function findCategoryByTrick(int $categoryId)
     {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT t, c
-            FROM App\Entity\Trick t
-            INNER JOIN t.category c
-            WHERE t.id = :id'
-        )->setParameter('id', $trickId);
-
-        return $query->getOneOrNullResult();
+        return $this->createQueryBuilder('t')
+                    ->innerJoin('t.category', 'ca')
+                    ->where('ca.id = :id')
+                    ->setParameter('id', $categoryId)
+                    ->orderBy('ca.id', 'DESC')
+                    ->getQuery()
+                    ->getResult();
     }
 }

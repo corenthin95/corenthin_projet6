@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\TrickRepository;
+use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,13 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrickController extends AbstractController
 {
     #[Route('/trick/{id}', name: 'show_trick', methods: ['GET', 'POST'])]
-    public function showTrick(string $id, TrickRepository $trickRepository): Response
+    public function showTrick(string $id, TrickRepository $trickRepository, CommentRepository $commentRepository): Response
     {
         $trick = $trickRepository->find($id);
-        $category = $trickRepository->findCategoryByTrick($id);
+        $comment = $commentRepository->findCommentByTrick($id);
         return $this->render('tricks/trick.html.twig', [
             'trick' => $trick,
-            'category' => $category
+            'comment' => $comment
         ]);
     }
 

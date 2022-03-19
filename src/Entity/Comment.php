@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
 #[Table(name: 'corenthin_projet6_comment')]
-#[Entity()]
+#[Entity(repositoryClass: CommentRepository::class)]
 
 class Comment
 {
@@ -38,7 +39,6 @@ class Comment
     {
         $this->createdAt = new \DateTime;
     }
-
 
     /**
      * Get the value of id

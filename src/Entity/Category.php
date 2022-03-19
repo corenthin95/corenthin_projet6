@@ -22,6 +22,11 @@ class Category
     #[Column(type: 'string')]
     private string $name;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+    
     /**
      * Get the value of id
      */ 
@@ -48,10 +53,5 @@ class Category
         $this->name = $name;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->name;
     }
 }

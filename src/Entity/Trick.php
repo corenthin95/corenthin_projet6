@@ -51,6 +51,11 @@ class Trick
         $this->updatedAt = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+    
     /**
      * Get the value of id
      */ 

@@ -37,6 +37,11 @@ class User
     #[JoinColumn(name: 'media_id', referencedColumnName: 'id', nullable: true)]
     private Media $media;
 
+    public function __toString()
+    {
+        return $this->username;
+    }
+
     public function __construct()
     {
         $this->roles[] = 'ROLE_USER';

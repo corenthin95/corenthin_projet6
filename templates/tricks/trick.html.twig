@@ -33,7 +33,7 @@
                     Suspendisse facilisis, urna venenatis viverra gravida, felis magna ultrices tellus, at condimentum odio urna eget risus. 
                     Suspendisse quis luctus ipsum. Morbi convallis massa eu urna efficitur, eget vestibulum tortor tempor. 
                     Suspendisse lorem nulla, euismod ac dui ac, egestas cursus ipsum.
-                    <small class="text-muted">12/10/2020 à 14h58</small>
+                    <small class="text-muted">{{ trick.updatedAt | date("d/m/Y H:i") }}</small>
                 </p>
                 <div id="trickInfoDetails">
                     <small>{{ trick.category }}</small>
@@ -47,14 +47,24 @@
                     </div>
                 </form> 
                 <div class="row" id="trickCommentList">
-                    <img src="https://www.w3schools.com/w3images/avatar5.png">
+                    {# <img src="https://www.w3schools.com/w3images/avatar5.png">
                     <div class="card">
                         <div class="card-header">Pseudonyme</div>
                         <p class="card-text">
                             Some quick example text to build on the card title and make up the bulk of the card's content.
                             <small class="text-muted">12/10/2020 à 14h58</small>
                         </p>
+                    </div> #}
+                    {% for comment in comment %}
+                    <img src="https://www.w3schools.com/w3images/avatar5.png">
+                    <div class="card">
+                        <div class="card-header">{{ comment.user }}</div>
+                        <p class="card-text">
+                            {{ comment.content }}
+                            <small class="text-muted">{{ comment.createdAt | date("d/m/Y H:i") }}</small>
+                        </p>
                     </div>
+                    {% endfor %}
                 </div>
                 <div id="trickCommentLoad">
                     <button type="button" class="btn btn-secondary">Load more</button>
