@@ -4,26 +4,30 @@
     <section id="trickSecurity">
         <div class="container">
             <h1>Registration</h1>
-            <form method="post" id="trickSecurityForm">
+            {{ form_start(form) }}
+            <div id="trickSecurityForm">
                 <div id="trickSecurityInput">
-                    <h3>Username</h3>
-                    <input>
+                    <h3>{{ form_label(form.username) }}</h3>
+                    {{ form_widget(form.username) }}
                 </div>
                 <div id="trickSecurityInput">
-                    <h3>Email</h3>
-                    <input>
+                    <h3>{{ form_label(form.email) }}</h3>
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
                 </div>
                 <div id="trickSecurityInput">
-                    <h3>Password</h3>
-                    <input type="password">
+                    <h3>{{ form_label(form.password) }}</h3>
+                    {{ form_widget(form.password) }}
                 </div>
                 <div id="trickSecurityButton">
-                    <button type="button" class="btn btn-secondary">Create an account</button>
+                    <button type="submit" class="btn btn-secondary">Create an account</button>
                 </div>
                 <div id="trickSecurityAlready">
                     <a href="{{ path('login') }}">Already have an account ?</a>
                 </div>
-            </form>
+            </div>
+            {{ form_end(form) }}
+            
         </div>
     </section>
 {% endblock %}
