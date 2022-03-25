@@ -10,11 +10,15 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
 
 #[Table(name: 'corenthin_projet6_user')]
 #[Entity(repositoryClass: UserRepository::class)]
 
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[Id]
     #[Column(type: 'integer')]
@@ -25,9 +29,11 @@ class User
     private string $username;
 
     #[Column(type: 'string')]
+    #[Email(message: 'Email not valid')]
     private string $email;
 
     #[Column(type: 'string')]
+    #[Length(min: 6, minMessage: 'Password need to be at least 6 characters')]
     private string $password;
 
     #[Column(type: 'json')]
@@ -75,6 +81,21 @@ class User
     public function getMedia()
     {
         return $this->media;
+    }
+
+    public function getUserIdentifier()
+    {
+        return $this->email;
+    }
+
+    public function getSalt()
+    {
+        return;
+    }
+    
+    public function eraseCredentials()
+    {
+        return;
     }
 
     /**
