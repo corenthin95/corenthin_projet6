@@ -17,7 +17,9 @@
                 </div>
                 <div id="trickSecurityInput">
                     <h3>{{ form_label(form.password) }}</h3>
-                    {{ form_widget(form.password) }}
+                    <div id="trickRegistrationPassword">
+                        {{ form_widget(form.password) }}
+                    </div>
                 </div>
                 <div id="trickSecurityButton">
                     <button type="submit" class="btn btn-secondary">Create an account</button>

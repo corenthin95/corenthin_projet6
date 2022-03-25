@@ -452,17 +452,29 @@ nav a:hover {
 }
 
 #trickSecurity .container {
-    padding-top: 4%;
+    padding-top: 2%;
     text-align: center;
 }
 
 #trickSecurityForm {
-    margin: 4% 20% 0 20%;
+    margin: 1% 20% 0 20%;
 
 }
 
 #trickSecurityInput {
     padding-top: 5%;
+}
+
+#trickSecurityInput ul {
+    padding: .5% 0 2% 0;
+    margin: 0;
+}
+
+#trickSecurityInput li {
+    font-weight: 400;
+    color: rgb(150, 62, 62);
+    padding-top: .9%;
+    list-style: none;
 }
 
 #trickSecurityInput input {
@@ -472,6 +484,12 @@ nav a:hover {
     outline: none;
     border-bottom: 1px solid rgb(29, 29, 29);
     font-size: 1rem;
+}
+
+#trickRegistrationPassword label{
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
 }
 
 #trickSecurityButton {
