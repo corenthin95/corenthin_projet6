@@ -4,22 +4,30 @@
     <section id="trickSecurity">
         <div class="container">
             <h1>Log In</h1>
-            <form method="post" id="trickSecurityForm">
+            {% if error %}
+            <div id="trickLoginError">Email or password incorrect.</div>
+            {% endif %}
+            {{ form_start(form) }}
+            <div id="trickSecurityForm">
                 <div id="trickSecurityInput">
-                    <h3>Username / Email</h3>
-                    <input>
+                    <h3>{{ form_label(form.email) }}</h3>
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
                 </div>
                 <div id="trickSecurityInput">
-                    <h3>Password</h3>
-                    <input>
+                    <h3>{{ form_label(form.password) }}</h3>
+                    <div id="trickSecurityPassword">
+                        {{ form_widget(form.password) }}
+                    </div>
                 </div>
                 <div id="trickSecurityButton">
-                    <button type="button" class="btn btn-secondary">Log in</button>
+                    <button type="submit" class="btn btn-secondary">Log in</button>
                 </div>
                 <div id="trickSecurityAlready">
                     <a href="{{ path('forgot_password') }}">Forgot your password ?</a>
                 </div>
-            </form>
+            </div>
+            {{ form_end(form) }}
         </div>
     </section>
 {% endblock %}
