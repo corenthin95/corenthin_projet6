@@ -486,7 +486,7 @@ nav a:hover {
     font-size: 1rem;
 }
 
-#trickRegistrationPassword label{
+#trickSecurityPassword label{
     display: flex;
     flex-direction: column;
     padding-top: 2%;
@@ -511,6 +511,11 @@ nav a:hover {
 
 #trickSecurityAlready a:hover {
     text-decoration: underline;
+}
+
+#trickLoginError {
+    font-weight: 400;
+    color: rgb(150, 62, 62);
 }
 
 @media screen and (max-width: 767px) {

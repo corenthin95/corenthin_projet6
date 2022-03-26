@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\RegistrationType;
+use App\Form\LoginType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Test\FormBuilderInterface;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController {
 
@@ -42,9 +44,18 @@ class SecurityController extends AbstractController {
     }
 
     #[Route('/login', name: 'login', methods: ['GET', 'POST'])]
-    public function login(UserRepository $userRepository): Response
+    public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('security/login.html.twig');
+        $form = $this->formFactory->create(LoginType::class);
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        return $this->render(
+            'security/login.html.twig',
+            [
+                'form' => $form->createView(),
+                'error' => $error
+            ]
+        );
     }
 
     #[Route('/forgot-password', name: 'forgot_password', methods: ['GET', 'POST'])]
