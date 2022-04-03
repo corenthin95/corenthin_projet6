@@ -1,0 +1,12 @@
+{% for comment in comment %}
+<div class="col-12" id="trickCommentCard">
+    <img src="https://www.w3schools.com/w3images/avatar5.png">
+    <div class="card">
+        <div class="card-header">{{ comment.user }}</div>
+        <p class="card-text">
+            {{ comment.content }}
+            <small class="text-muted">{{ comment.createdAt | date("d/m/Y H:i") }}</small>
+        </p>
+    </div>
+</div>
+{% endfor %}

@@ -55,21 +55,32 @@
                             <small class="text-muted">12/10/2020 à 14h58</small>
                         </p>
                     </div> #}
-                    {% for comment in comment %}
-                    <img src="https://www.w3schools.com/w3images/avatar5.png">
-                    <div class="card">
-                        <div class="card-header">{{ comment.user }}</div>
-                        <p class="card-text">
-                            {{ comment.content }}
-                            <small class="text-muted">{{ comment.createdAt | date("d/m/Y H:i") }}</small>
-                        </p>
-                    </div>
-                    {% endfor %}
+                    {% include 'parts/_comments.html.twig' with {'comment': comment} %}
                 </div>
-                <div id="trickCommentLoad">
-                    <button type="button" class="btn btn-secondary">Load more</button>
+                <div id="trickItemsLoad">
+                    <button type="button" class="btn btn-secondary" id="load-more-comments" data-url="{{ path('load-more-comments', {'id': trick.id}) }}" data-nextpage="2">Load more</button>
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const containerTricks = document.querySelector('#trickCommentList');
+        const buttonElement = document.querySelector('#load-more-comments');
+
+        buttonElement.addEventListener('click', (e) => {
+            const urlToCall = buttonElement.dataset.url;
+            const nextPage = buttonElement.dataset.nextpage;
+            fetch(`${urlToCall}?page=${nextPage}`)
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.code === 200) {
+                    containerTricks.innerHTML += data.html;
+                    buttonElement.dataset.nextpage++;
+                }
+            })
+        })
+    </script>
 {% endblock %}

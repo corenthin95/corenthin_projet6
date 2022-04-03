@@ -13,23 +13,33 @@
 
     <section id="tricksList">
         <div class="container-fluid">
-            <div class="row">
-                {% for tricks in tricks %}
-                <div class="col-lg-3 col-xs-12">
-                    <div class="card">
-                        <img class="card-img-top" src="https://img.redbull.com/images/c_crop,w_1920,h_960,x_0,y_120,f_auto,q_auto/c_scale,w_1200/redbullcom/2021/2/9/lo3b9oljjxcp3mlt2xtd/steep-meilleurs-jeux-video-snowboard" alt="Card image cap">
-                        <div class="card-body">
-                            <a href="{{ path('show_trick', {id: tricks.id}) }}"><h3 class="card-title">{{ tricks.name }}</h3></a>
-                            <div id="tricksListButtons">
-                                <a href="{{ path('edit_trick', {id: tricks.id}) }}"><i href="#" class="fa-solid fa-pen"></i></a>
-                                <a href="#"><i class="fa-solid fa-trash"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+            <div class="row" id="container-tricks">
+                {% include 'parts/_listTricks.html.twig' %}
+            </div>
+            <div id="trickItemsLoad">
+                <button type="button" class="btn btn-secondary" id="load-more-tricks" data-url="{{ path('load_more_tricks') }}" data-nextpage="2">Load more</button>
             </div>
         </div>
     </section>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const containerTricks = document.querySelector('#container-tricks');
+        const buttonElement = document.querySelector('#load-more-tricks');
+
+        buttonElement.addEventListener('click', (e) => {
+            const urlToCall = buttonElement.dataset.url;
+            const nextPage = buttonElement.dataset.nextpage;
+            fetch(`${urlToCall}?page=${nextPage}`)
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.code === 200) {
+                    containerTricks.innerHTML += data.html;
+                    buttonElement.dataset.nextpage++;
+                }
+            })
+        })
+    </script>
 {% endblock %}
