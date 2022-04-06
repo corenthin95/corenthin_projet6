@@ -10,7 +10,7 @@
                 </div>
                 <div id="trickSpecifiedButtons">
                     <a href="{{ path('edit_trick', {id: trick.id}) }}"><i class="fa-solid fa-pen"></i></a>
-                    <a href="#"><i class="fa-solid fa-trash"></i></a>
+                    <a href="{{ path('delete_trick', {id: trick.id}) }}"><i class="fa-solid fa-trash"></i></a>
                 </div>
             </div>
             
@@ -18,21 +18,6 @@
                 {% include 'parts/carousel/_carousel.html.twig' %}
                 <p>
                     {{ trick.description }}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Sed et nisi vel justo vulputate auctor. In varius enim sed lorem dapibus elementum. Suspendisse aliquam hendrerit diam in viverra. 
-                    Suspendisse potenti. Vivamus interdum ligula et lacinia dapibus. Curabitur at felis ac mi ultrices iaculis vel et purus. 
-                    Nullam et est et nisl finibus bibendum ut sed nunc. Curabitur hendrerit sed urna vitae finibus. 
-                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla faucibus tempus porta. 
-                    Nulla ut mauris a purus placerat placerat tristique eget ante.
-                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; 
-                    Vestibulum imperdiet viverra vestibulum. Cras volutpat elementum metus, vel eleifend mauris sagittis a. 
-                    Cras urna ante, bibendum vel eleifend vel, cursus vitae enim. Sed lacus nibh, maximus non elementum a, suscipit ac felis. 
-                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam mattis nibh placerat, porttitor est et, sodales turpis. 
-                    Duis vitae metus non metus dapibus lobortis at vel mauris. Ut eleifend dolor non sapien dictum fringilla id non nulla. Vivamus et rhoncus dui. 
-                    Maecenas vulputate augue sed sollicitudin laoreet. Aliquam consequat sodales augue, non fringilla eros porttitor vitae. 
-                    Suspendisse facilisis, urna venenatis viverra gravida, felis magna ultrices tellus, at condimentum odio urna eget risus. 
-                    Suspendisse quis luctus ipsum. Morbi convallis massa eu urna efficitur, eget vestibulum tortor tempor. 
-                    Suspendisse lorem nulla, euismod ac dui ac, egestas cursus ipsum.
                     <small class="text-muted">{{ trick.updatedAt | date("d/m/Y H:i") }}</small>
                 </p>
                 <div id="trickInfoDetails">
