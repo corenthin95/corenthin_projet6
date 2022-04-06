@@ -268,8 +268,13 @@ nav a:hover {
 #trickCommentList {
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-top: 5%;
+}
+
+#trickCommentCard {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
 }
 
 #trickCommentList img {
@@ -277,6 +282,7 @@ nav a:hover {
     width: auto;
     height: 5rem;
     border-radius: 50%;
+    margin-top: 2%;
 }
 
 #trickCommentList .card-footer {
@@ -304,7 +310,7 @@ nav a:hover {
     font-size: 0.8rem;
 }
 
-#trickCommentLoad {
+#trickItemsLoad {
     padding: 5%;
     display: flex;
     justify-content: center;

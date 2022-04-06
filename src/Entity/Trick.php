@@ -45,6 +45,28 @@ class Trick
     #[JoinColumn(name: 'category_id', referencedColumnName: 'id')]
     private Category $category;
 
+    private string $mainImage;
+
+    /**
+     * Get the value of updatedAt
+     */ 
+    public function getMainImage()
+    {
+        return $this->mainImage;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */ 
+    public function setMainImage($mainImage)
+    {
+        $this->mainImage = $mainImage;
+
+        return $this;
+    }
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();

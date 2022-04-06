@@ -4,7 +4,7 @@
     <section id="backgroundTrick">
         <div class="container" id="trickDisplay">
             <div>
-                <img id="featuredImg" src="https://img.redbull.com/images/c_crop,w_1920,h_960,x_0,y_120,f_auto,q_auto/c_scale,w_1200/redbullcom/2021/2/9/lo3b9oljjxcp3mlt2xtd/steep-meilleurs-jeux-video-snowboard">
+                <img id="featuredImg" alt="Image Trick">
                 <div id="trickSpecificName">
                     <h1>{{ trick.name }}</h1>
                 </div>
@@ -55,21 +55,32 @@
                             <small class="text-muted">12/10/2020 à 14h58</small>
                         </p>
                     </div> #}
-                    {% for comment in comment %}
-                    <img src="https://www.w3schools.com/w3images/avatar5.png">
-                    <div class="card">
-                        <div class="card-header">{{ comment.user }}</div>
-                        <p class="card-text">
-                            {{ comment.content }}
-                            <small class="text-muted">{{ comment.createdAt | date("d/m/Y H:i") }}</small>
-                        </p>
-                    </div>
-                    {% endfor %}
+                    {% include 'parts/_comments.html.twig' with {'comment': comment} %}
                 </div>
-                <div id="trickCommentLoad">
-                    <button type="button" class="btn btn-secondary">Load more</button>
+                <div id="trickItemsLoad">
+                    <button type="button" class="btn btn-secondary" id="load-more-comments" data-url="{{ path('load-more-comments', {'id': trick.id}) }}" data-nextpage="2">Load more</button>
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const containerTricks = document.querySelector('#trickCommentList');
+        const buttonElement = document.querySelector('#load-more-comments');
+
+        buttonElement.addEventListener('click', (e) => {
+            const urlToCall = buttonElement.dataset.url;
+            const nextPage = buttonElement.dataset.nextpage;
+            fetch(`${urlToCall}?page=${nextPage}`)
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.code === 200) {
+                    containerTricks.innerHTML += data.html;
+                    buttonElement.dataset.nextpage++;
+                }
+            })
+        })
+    </script>
 {% endblock %}
