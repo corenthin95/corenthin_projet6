@@ -6,7 +6,7 @@
             <a href="{{ path('show_trick', {id: tricks.id}) }}"><h3 class="card-title">{{ tricks.name }}</h3></a>
             <div id="tricksListButtons">
                 <a href="{{ path('edit_trick', {id: tricks.id}) }}"><i href="#" class="fa-solid fa-pen"></i></a>
-                <a href="#"><i class="fa-solid fa-trash"></i></a>
+                <a href="{{ path('delete_trick', {id: tricks.id}) }}"><i class="fa-solid fa-trash"></i></a>
             </div>
         </div>
     </div>

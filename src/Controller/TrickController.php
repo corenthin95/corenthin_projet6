@@ -96,4 +96,15 @@ class TrickController extends AbstractController
             ]
         );
     }
+
+    #[Route ('/delete/{id}', name: 'delete_trick', methods: ['GET', 'POST'])]
+    public function deleteTrick(string $id, TrickRepository $trickRepository)
+    {
+        $trick = $trickRepository->find($id);
+
+        $this->entityManager->remove($trick);
+        $this->entityManager->flush();
+
+        return $this->redirectToRoute('homepage');
+    }
 }
