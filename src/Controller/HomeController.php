@@ -14,15 +14,15 @@ class HomeController extends AbstractController
     #[Route('/', name: 'homepage', methods: ['GET', 'POST'])]
     public function index(TrickRepository $trickRepository): Response
     {
-        $tricks = $trickRepository->findAll();
+        $tricks = $trickRepository->getMoreTricks(1);
         return $this->render('home.html.twig', ['tricks' => $tricks]);
     }
 
-    #[Route('/', name: "load_more_tricks", methods: ['GET'])]
-    public function loadMoreTricks(Request $request, string $id, TrickRepository $trickRepository): JsonResponse
+    #[Route('/tricks', name: "load_more_tricks", methods: ['GET'])]
+    public function loadMoreTricks(Request $request, TrickRepository $trickRepository): JsonResponse
     {
         $page = $request->query->has('page') ? $request->query->getInt('page') : 2;
-        $tricks = $trickRepository->getMoreTricks($id, $page);
+        $tricks = $trickRepository->getMoreTricks($page);
         return new JsonResponse(
             [
                 'code' => 200,

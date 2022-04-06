@@ -24,11 +24,9 @@ class TrickRepository extends ServiceEntityRepository
                     ->getResult();
     }
 
-    public function getMoreTricks(int $trickId, int $page, int $limit = 8)
+    public function getMoreTricks(int $page, int $limit = 8)
     {
         return $this->createQueryBuilder('t')
-                    ->where('t.id = :id')
-                    ->setParameter('id', $trickId)
                     ->orderBy('t.id', 'DESC')
                     ->setFirstResult(($page - 1) * $limit)
                     ->setMaxResults($limit)
