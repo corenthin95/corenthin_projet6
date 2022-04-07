@@ -41,7 +41,7 @@ class TrickType extends AbstractType
                 ]
             )
             ->add(
-                'image',
+                'mainImage',
                 FileType::class,
                 [
                     'label' => 'Upload files'
