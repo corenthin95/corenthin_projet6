@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Form\TrickType;
+use App\Form\CommentType;
+use App\Entity\Comment;
 use App\Repository\TrickRepository;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,31 +18,46 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class TrickController extends AbstractController
 {
-    private $slugger;
-
     public function __construct(
         private FormFactoryInterface $formFactory,
         private EntityManagerInterface $entityManager,
-        SluggerInterface $slugger
+        private SluggerInterface $slugger
     ) {        
         $this->slugger = $slugger;
     }
 
-    #[Route('/trick/{id}', name: 'show_trick', methods: ['GET', 'POST'])]
-    public function showTrick(string $id, TrickRepository $trickRepository, CommentRepository $commentRepository): Response
+    #[Route('/trick/{slug}', name: 'show_trick', methods: ['GET', 'POST'])]
+    public function showTrick(Request $request, string $slug, TrickRepository $trickRepository, CommentRepository $commentRepository): Response
     {
-        $trick = $trickRepository->find($id);
-        $comment = $commentRepository->findCommentByTrick($id, page: 1);
+        $trick = $trickRepository->findOneBy(['slug' => $slug]);
+        $comment = $commentRepository->findCommentByTrick($trick->getId(), page: 1);
+
+        $form = $this->formFactory->create(CommentType::class)
+                                  ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment = $form->getData();
+            $comment->setUser($this->getUser());
+            $comment->setTrick($trick);
+
+            $this->entityManager->persist($comment);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+        
         return $this->render('tricks/trick.html.twig', [
             'trick' => $trick,
-            'comment' => $comment
+            'comment' => $comment,
+            'form' => $form->createView()
         ]);
     }
 
-    #[Route('/trick/{id}/comments', name: 'load-more-comments', methods: ['GET'])]
-    public function loadMoreComments(Request $request, CommentRepository $commentRepository, string $id): JsonResponse {
+    #[Route('/trick/{slug}/comments', name: 'load-more-comments', methods: ['GET'])]
+    public function loadMoreComments(Request $request, TrickRepository $trickRepository, CommentRepository $commentRepository, string $slug): JsonResponse {
         $page = $request->query->has('page') ? $request->query->getInt('page') : 2;
-        $comment = $commentRepository->findCommentByTrick($id, $page);
+        $trick = $trickRepository->findOneBy(['slug' => $slug]);
+        $comment = $commentRepository->findCommentByTrick($trick->getId(), $page);
         return new JsonResponse(
             [
                 'code' => 200,
@@ -51,10 +68,10 @@ class TrickController extends AbstractController
 
     #
 
-    #[Route ('/trick/edit/{id}', name:'edit_trick', methods: ['GET', 'POST'])]
-    public function editTrick(Request $request, string $id, TrickRepository $trickRepository): Response   
+    #[Route ('/trick/edit/{slug}', name:'edit_trick', methods: ['GET', 'POST'])]
+    public function editTrick(string $slug, TrickRepository $trickRepository): Response   
     {
-        $trick = $trickRepository->find($id);
+        $trick = $trickRepository->findOneBy(['slug' => $slug]);
         return $this->render('tricks/editTrick.html.twig', ['trick' => $trick]);
 
     }
@@ -67,20 +84,21 @@ class TrickController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $trick = $form->getData();
-            $trick->setSlug($this->slugger->slug($trick->getName()));
-            $mainImageFile = $form->get('image')->getData();
+            $trick->setSlug(strtolower($this->slugger->slug($trick->getName())));
+            $trick->setUser($this->getUser());
+            $trickMainImage = $trick->getMainImage();
 
-            if($mainImageFile) {
-                $nameMainImage = pathinfo($mainImageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            if($trickMainImage) {
+                $nameMainImage = pathinfo($trickMainImage->getClientOriginalName(), PATHINFO_FILENAME);
                 $slugMainImage = $slugger->slug($nameMainImage);
-                $newNameMainImage = $slugMainImage.'-'.uniqid().'-'.$mainImageFile->guessExtension();
+                $newNameMainImage = $slugMainImage.'-'.uniqid().'-'.$trickMainImage->guessExtension();
 
-                $mainImageFile->move(
+                $trickMainImage->move(
                     $this->getParameter('main_image_directory'),
                     $newNameMainImage
                 );
 
-                $trick->setMainImage($newNameMainImage);
+                $trick->setImage($newNameMainImage);
             }
 
             $this->entityManager->persist($trick);

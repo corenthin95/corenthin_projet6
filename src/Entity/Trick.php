@@ -45,7 +45,7 @@ class Trick
     #[JoinColumn(name: 'category_id', referencedColumnName: 'id')]
     private Category $category;
 
-    private string $mainImage;
+    private $mainImage;
 
     /**
      * Get the value of updatedAt

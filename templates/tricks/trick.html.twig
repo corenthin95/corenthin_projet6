@@ -4,13 +4,13 @@
     <section id="backgroundTrick">
         <div class="container" id="trickDisplay">
             <div>
-                <img id="featuredImg" alt="Image Trick">
+                <img id="featuredImg" src="{{'/uploads/' ~ trick.image  }}" alt="Image Trick">
                 <div id="trickSpecificName">
                     <h1>{{ trick.name }}</h1>
                 </div>
                 <div id="trickSpecifiedButtons">
-                    <a href="{{ path('edit_trick', {id: trick.id}) }}"><i class="fa-solid fa-pen"></i></a>
-                    <a href="{{ path('delete_trick', {id: trick.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                    <a href="{{ path('edit_trick', {slug: trick.slug}) }}"><i class="fa-solid fa-pen"></i></a>
+                    <a href="{{ path('delete_trick', {id: trick.id }) }}"><i class="fa-solid fa-trash"></i></a>
                 </div>
             </div>
             
@@ -26,24 +26,19 @@
                 <form method="post">
                     <div class="row" id="trickInfoLeavingComment">
                         <div class="col-lg col-xs" id="trickTextarea">
-                            <textarea placeholder="Enter your message"></textarea>
-                            <button type="button" class="btn btn-secondary">Leave a comment</button>
+                        {{ form_start(form) }}
+                            {# <textarea placeholder="Enter your message"></textarea> #}
+                            {{ form_widget(form.content) }}
+                            <button type="submit" class="btn btn-secondary">Leave a comment</button>
+                        {{ form_end(form) }}
                         </div>
                     </div>
                 </form> 
                 <div class="row" id="trickCommentList">
-                    {# <img src="https://www.w3schools.com/w3images/avatar5.png">
-                    <div class="card">
-                        <div class="card-header">Pseudonyme</div>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's content.
-                            <small class="text-muted">12/10/2020 à 14h58</small>
-                        </p>
-                    </div> #}
                     {% include 'parts/_comments.html.twig' with {'comment': comment} %}
                 </div>
                 <div id="trickItemsLoad">
-                    <button type="button" class="btn btn-secondary" id="load-more-comments" data-url="{{ path('load-more-comments', {'id': trick.id}) }}" data-nextpage="2">Load more</button>
+                    <button type="button" class="btn btn-secondary" id="load-more-comments" data-url="{{ path('load-more-comments', {'slug': trick.slug}) }}" data-nextpage="2">Load more</button>
                 </div>
             </div>
         </div>
