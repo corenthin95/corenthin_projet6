@@ -13,13 +13,22 @@
 
     <section id="tricksList">
         <div class="container-fluid">
+            {% if app.user %}
+            <div id="trickNewTrickButton">
+                <a href="{{ path('new_trick') }}"><button type="button" class="btn btn-secondary">Create a new Trick</button></a>
+            </div>
+            {% endif %}
             <div class="row" id="container-tricks">
                 {% include 'parts/_listTricks.html.twig' %}
             </div>
             <div id="trickItemsLoad">
                 <button type="button" class="btn btn-secondary" id="load-more-tricks" data-url="{{ path('load_more_tricks') }}" data-nextpage="2">Load more</button>
             </div>
+            <div id="tricksArrowUp">
+                <a href="/#tricksList"><i class="fa-solid fa-arrow-up"></i></a>
+            </div>
         </div>
+        
     </section>
 
 {% endblock %}

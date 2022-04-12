@@ -13,7 +13,7 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
-    public function findCommentByTrick(int $commentId, int $page, int $limit = 1)
+    public function findCommentByTrick(int $commentId, int $page, int $limit = 10)
     {
         return $this->createQueryBuilder('co')
                     ->innerJoin('co.trick', 't')
