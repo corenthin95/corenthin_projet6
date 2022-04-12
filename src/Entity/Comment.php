@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -31,7 +32,7 @@ class Comment
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private User $user;
 
-    #[ManyToOne(targetEntity: 'App\Entity\Trick')]
+    #[ManyToOne(targetEntity: 'App\Entity\Trick', inversedBy: 'comment')]
     #[JoinColumn(name: 'trick_id', referencedColumnName: 'id')]
     private Trick $trick;
 

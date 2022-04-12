@@ -4,10 +4,12 @@
         <img class="card-img-top" src="{{'/uploads/' ~ tricks.image  }}" alt="Card image cap">
         <div class="card-body">
             <a href="{{ path('show_trick', {slug: tricks.slug}) }}"><h3 class="card-title">{{ tricks.name }}</h3></a>
+            {% if app.user %}
             <div id="tricksListButtons">
                 <a href="{{ path('edit_trick', {slug: tricks.slug}) }}"><i href="#" class="fa-solid fa-pen"></i></a>
                 <a href="{{ path('delete_trick', {id: tricks.id}) }}"><i class="fa-solid fa-trash"></i></a>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

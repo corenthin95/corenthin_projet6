@@ -30,7 +30,7 @@ class TrickController extends AbstractController
     public function showTrick(Request $request, string $slug, TrickRepository $trickRepository, CommentRepository $commentRepository): Response
     {
         $trick = $trickRepository->findOneBy(['slug' => $slug]);
-        $comment = $commentRepository->findCommentByTrick($trick->getId(), page: 1);
+        $comment = $commentRepository->findCommentByTrick($trick->getId(), 1);
 
         $form = $this->formFactory->create(CommentType::class)
                                   ->handleRequest($request);
@@ -115,10 +115,14 @@ class TrickController extends AbstractController
         );
     }
 
-    #[Route ('/delete/{id}', name: 'delete_trick', methods: ['GET', 'POST'])]
+    #[Route ('/delete/{id}', name: 'delete_trick', methods: ['GET', 'DELETE'])]
     public function deleteTrick(string $id, TrickRepository $trickRepository)
     {
         $trick = $trickRepository->find($id);
+
+        foreach ($trick->getComment() as $comment) {
+            $this->entityManager->remove($comment);
+        }
 
         $this->entityManager->remove($trick);
         $this->entityManager->flush();
