@@ -2,16 +2,19 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
 #[Table(name: 'corenthin_projet6_trick')]
 #[Entity(repositoryClass: TrickRepository::class)]
+
 class Trick
 {
     #[Id]
@@ -36,6 +39,10 @@ class Trick
 
     #[Column(type: 'string')]
     private string $image;
+
+    #[OneToMany(targetEntity: 'App\Entity\Comment', mappedBy: 'trick', cascade: ['remove'])]
+    #[JoinColumn(name: 'comment_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private \Doctrine\Common\Collections\Collection $comment;
 
     #[ManyToOne(targetEntity: 'App\Entity\User')]
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
@@ -71,6 +78,7 @@ class Trick
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->comment = new ArrayCollection();
     }
 
     public function __toString()
@@ -132,6 +140,14 @@ class Trick
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Get the value of comment
+     */ 
+    public function getComment()
+    {
+        return $this->comment;
     }
 
     /**
@@ -230,6 +246,18 @@ class Trick
     public function setCategory($category)
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of comment
+     *
+     * @return  self
+     */ 
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
 
         return $this;
     }

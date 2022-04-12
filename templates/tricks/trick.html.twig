@@ -8,10 +8,12 @@
                 <div id="trickSpecificName">
                     <h1>{{ trick.name }}</h1>
                 </div>
+                {% if app.user %}
                 <div id="trickSpecifiedButtons">
                     <a href="{{ path('edit_trick', {slug: trick.slug}) }}"><i class="fa-solid fa-pen"></i></a>
                     <a href="{{ path('delete_trick', {id: trick.id }) }}"><i class="fa-solid fa-trash"></i></a>
                 </div>
+                {% endif %}
             </div>
             
             <div class="container" id="trickInfo">
@@ -23,17 +25,17 @@
                 <div id="trickInfoDetails">
                     <small>{{ trick.category }}</small>
                 </div>
-                <form method="post">
-                    <div class="row" id="trickInfoLeavingComment">
-                        <div class="col-lg col-xs" id="trickTextarea">
-                        {{ form_start(form) }}
-                            {# <textarea placeholder="Enter your message"></textarea> #}
-                            {{ form_widget(form.content) }}
-                            <button type="submit" class="btn btn-secondary">Leave a comment</button>
-                        {{ form_end(form) }}
-                        </div>
+                {% if app.user %}
+                {{ form_start(form) }}
+                <div class="row" id="trickInfoLeavingComment">
+                    <div class="col-lg col-xs" id="trickTextarea">
+                        {# <textarea placeholder="Enter your message"></textarea> #}
+                        {{ form_widget(form.content) }}
+                        <button type="submit" class="btn btn-secondary">Leave a comment</button>
                     </div>
-                </form> 
+                </div>
+                {{ form_end(form) }}
+                {% endif %}
                 <div class="row" id="trickCommentList">
                     {% include 'parts/_comments.html.twig' with {'comment': comment} %}
                 </div>
