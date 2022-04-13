@@ -5,9 +5,6 @@
         <div class="container" id="trickDisplay">
             <div>
                 <img id="featuredImg" src="{{'/uploads/' ~ trick.image  }}" alt="Image Trick">
-                <div id="trickSpecificName">
-                    <h1>{{ trick.name }}</h1>
-                </div>
                 {% if app.user %}
                 <div id="trickSpecifiedButtons">
                     <a href="{{ path('edit_trick', {slug: trick.slug}) }}"><i class="fa-solid fa-pen"></i></a>
@@ -15,8 +12,13 @@
                 </div>
                 {% endif %}
             </div>
-            
+            <div id="trickSpecificName">
+                <h1>{{ trick.name }}</h1>
+            </div>
             <div class="container" id="trickInfo">
+                <div id="trickShowCarousel">
+                    <button type="button" class="btn btn-secondary" onclick="showDivCarousel()">Show </button>
+                </div>
                 {% include 'parts/carousel/_carousel.html.twig' %}
                 <p>
                     {{ trick.description }}
@@ -64,5 +66,9 @@
                 }
             })
         })
+
+        function showDivCarousel() {
+            document.getElementById('showCarousel').style.display = "block";
+        }
     </script>
 {% endblock %}

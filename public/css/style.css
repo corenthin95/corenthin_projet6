@@ -209,11 +209,9 @@ nav a:hover {
 }
 
 #trickSpecificName {
-    padding: .5% 4% 0 4%;
+    padding: 0.6%;
     background-color: rgb(12, 12, 12, 0.5);
-    width: 20%;
-    position: absolute;
-    bottom: 12%;
+    width: 100%;
 }
 
 #trickSpecificName h1 {
@@ -338,14 +336,15 @@ nav a:hover {
     justify-content: center;
 }
 
+#trickShowCarousel {
+    display: none;
+}
+
 @media screen and (max-width: 767px) {
     #trickSpecificName {
-        background-color: rgb(12, 12, 12, 0.5);
-        position: absolute;
-        bottom: 76%;
-        width: 50%;
-        padding-top: 1.5%;
+        padding: 0.1%;
     }
+
     #trickSpecifiedButtons {
         width: 15%;
         position: absolute;
@@ -408,6 +407,17 @@ nav a:hover {
     
     #trickCommentLoad button {
         font-size: .9rem;
+    }
+
+    #trickShowCarousel {
+        display: block;
+        display: flex;
+        justify-content: center;
+        padding: 5% 0 1% 0;
+    }
+
+    #trickShowCarousel button {
+        font-size: 0.8rem;
     }
 }
 
@@ -616,6 +626,9 @@ footer div{
 }
 
 @media (max-width: 767px) {
+    .carousel-main {
+        display: none;
+    }
     .carousel-inner .carousel-item > div {
         display: none;
     }
