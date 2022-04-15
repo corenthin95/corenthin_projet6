@@ -17,6 +17,7 @@ security:
         main:
             lazy: true
             provider: entity_db_provider
+            user_checker: App\Security\UserChecker
             form_login:
                 login_path: login
                 check_path: login

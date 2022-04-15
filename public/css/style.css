@@ -17,6 +17,16 @@ nav {
     overflow: auto;
 }
 
+#titleHeader {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+#titleHeader h5 {
+    color: white;
+}
+
 nav ul {
     display: flex;
     justify-content: flex-end;
@@ -271,6 +281,22 @@ nav a:hover {
     padding: 4% 0 4% 0;
     border-top: 0.1rem solid;
     border-bottom: 0.1rem solid;
+}
+
+#trickCommentRegisterLogIn p {
+    padding: 0%;
+    margin: 0%;
+    text-align: center;
+}
+
+#trickCommentRegisterLogIn a {
+    text-decoration: none;
+    color:rgb(3, 3, 3);
+    font-weight: 400;
+}
+
+#trickCommentRegisterLogIn a:hover {
+    text-decoration: underline;
 }
 
 #trickTextarea{ 
@@ -558,7 +584,8 @@ nav a:hover {
 
 @media screen and (max-width: 767px) {
     #trickSecurity .container {
-        padding-top: 40%;
+        padding-top: 15%;
+        padding-bottom: 15%;
     }
 
     #trickSecurityForm {

@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
+use Doctrine\Common\Collections\Collection;
 
 #[Table(name: 'corenthin_projet6_trick')]
 #[Entity(repositoryClass: TrickRepository::class)]
@@ -42,7 +43,7 @@ class Trick
 
     #[OneToMany(targetEntity: 'App\Entity\Comment', mappedBy: 'trick', cascade: ['remove'])]
     #[JoinColumn(name: 'comment_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private \Doctrine\Common\Collections\Collection $comment;
+    private Collection $comment;
 
     #[ManyToOne(targetEntity: 'App\Entity\User')]
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
