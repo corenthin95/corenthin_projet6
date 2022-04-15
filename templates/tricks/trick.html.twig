@@ -27,17 +27,22 @@
                 <div id="trickInfoDetails">
                     <small>{{ trick.category }}</small>
                 </div>
-                {% if app.user %}
-                {{ form_start(form) }}
+                
                 <div class="row" id="trickInfoLeavingComment">
+                    {% if app.user %}
+                    {{ form_start(form) }}
                     <div class="col-lg col-xs" id="trickTextarea">
                         {# <textarea placeholder="Enter your message"></textarea> #}
                         {{ form_widget(form.content) }}
                         <button type="submit" class="btn btn-secondary">Leave a comment</button>
                     </div>
+                    {{ form_end(form) }}
+                    {% else %}
+                    <div id="trickCommentRegisterLogIn">
+                        <p><a href="{{ path('registration') }}">Register</a> or <a href="{{ path('login') }}">Log In</a> to leave a comment.</p>
+                    </div>
+                    {% endif %}
                 </div>
-                {{ form_end(form) }}
-                {% endif %}
                 <div class="row" id="trickCommentList">
                     {% include 'parts/_comments.html.twig' with {'comment': comment} %}
                 </div>

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\Email;
@@ -17,7 +18,11 @@ use Symfony\Component\Validator\Constraints\Length;
 
 #[Table(name: 'corenthin_projet6_user')]
 #[Entity(repositoryClass: UserRepository::class)]
-
+#[UniqueEntity(
+    fields: ['email'],
+    errorPath: 'email',
+    message: 'This email is already used.'
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[Id]
@@ -28,7 +33,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Column(type: 'string')]
     private string $username;
 
-    #[Column(type: 'string')]
+    #[Column(type: 'string', unique: true)]
     #[Email(message: 'Email not valid')]
     private string $email;
 
@@ -43,6 +48,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[JoinColumn(name: 'media_id', referencedColumnName: 'id', nullable: true)]
     private Media $media;
 
+    #[Column(type: 'string', nullable: true)]
+    private string $token;
+
+    #[Column(type: 'boolean')]
+    private $isVerified;
+
     public function __toString()
     {
         return $this->username;
@@ -51,6 +62,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->roles[] = 'ROLE_USER';
+        $this->isVerified = false;
     }
 
     public function getId(): int
@@ -81,6 +93,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getMedia()
     {
         return $this->media;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function getIsVerified()
+    {
+        return $this->isVerified;
     }
 
     public function getUserIdentifier()
@@ -142,6 +164,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMedia($media)
     {
         $this->media = $media;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of token
+     *
+     * @return  self
+     */ 
+    public function setToken(?string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of isVerified
+     *
+     * @return  self
+     */ 
+    public function setIsVerified($isVerified)
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

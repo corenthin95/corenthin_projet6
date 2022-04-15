@@ -66,8 +66,6 @@ class TrickController extends AbstractController
         );
     }
 
-    #
-
     #[Route ('/trick/edit/{slug}', name:'edit_trick', methods: ['GET', 'POST'])]
     public function editTrick(string $slug, TrickRepository $trickRepository): Response   
     {
