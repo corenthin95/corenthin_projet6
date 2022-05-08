@@ -5,7 +5,7 @@
         <div class="container">
             <h1>Log In</h1>
             {% if error %}
-            <div id="trickLoginError">Email or password incorrect.</div>
+            <div id="trickLoginError">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
             {{ form_start(form) }}
             <div id="trickSecurityForm">

@@ -102,7 +102,7 @@ class TrickController extends AbstractController
             $this->entityManager->persist($trick);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('show_trick', ['slug' => $trick->getSlug()]);
         }
 
         return $this->render(
