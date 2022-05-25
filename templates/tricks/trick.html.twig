@@ -46,9 +46,11 @@
                 <div class="row" id="trickCommentList">
                     {% include 'parts/_comments.html.twig' with {'comment': comment} %}
                 </div>
+                {% if totalComments > 5 %}
                 <div id="trickItemsLoad">
-                    <button type="button" class="btn btn-secondary" id="load-more-comments" data-url="{{ path('load-more-comments', {'slug': trick.slug}) }}" data-nextpage="2">Load more</button>
+                    <button type="button" class="btn btn-secondary" id="load-more-comments" data-url="{{ path('load-more-comments', {'slug': trick.slug}) }}" data-nextpage="2" data-total="{{ totalComments }}">Load more</button>
                 </div>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -58,6 +60,7 @@
     <script>
         const containerTricks = document.querySelector('#trickCommentList');
         const buttonElement = document.querySelector('#load-more-comments');
+        const totalComments = buttonElement.dataset.total;
 
         buttonElement.addEventListener('click', (e) => {
             const urlToCall = buttonElement.dataset.url;
@@ -67,7 +70,11 @@
             .then(data => {
                 if (data.code === 200) {
                     containerTricks.innerHTML += data.html;
+                    const totalCommentDisplayed = document.querySelectorAll('.comment-heading')
                     buttonElement.dataset.nextpage++;
+                    if (totalCommentDisplayed.length === parseIn(totalComments)) {
+                        buttonElement.style.display = 'none';
+                    }
                 }
             })
         })
