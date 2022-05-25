@@ -31,6 +31,7 @@ class TrickController extends AbstractController
     {
         $trick = $trickRepository->findOneBy(['slug' => $slug]);
         $comment = $commentRepository->findCommentByTrick($trick->getId(), 1);
+        $totalComments = $trick->getComment()->count();
 
         $form = $this->formFactory->create(CommentType::class)
                                   ->handleRequest($request);
@@ -49,6 +50,7 @@ class TrickController extends AbstractController
         return $this->render('tricks/trick.html.twig', [
             'trick' => $trick,
             'comment' => $comment,
+            'totalComments' => $totalComments,
             'form' => $form->createView()
         ]);
     }
@@ -102,7 +104,7 @@ class TrickController extends AbstractController
             $this->entityManager->persist($trick);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('show_trick', ['slug' => $trick->getSlug()]);
         }
 
         return $this->render(
