@@ -70,7 +70,7 @@
             .then(data => {
                 if (data.code === 200) {
                     containerTricks.innerHTML += data.html;
-                    const totalCommentDisplayed = document.querySelectorAll('.comment-heading')
+                    const totalCommentDisplayed = document.querySelectorAll('.comment-heading');
                     buttonElement.dataset.nextpage++;
                     if (totalCommentDisplayed.length === parseIn(totalComments)) {
                         buttonElement.style.display = 'none';
