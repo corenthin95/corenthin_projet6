@@ -13,9 +13,16 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'homepage', methods: ['GET', 'POST'])]
     public function index(TrickRepository $trickRepository): Response
-    {
+    {   
+
         $tricks = $trickRepository->getMoreTricks(1);
-        return $this->render('home.html.twig', ['tricks' => $tricks]);
+        $totalTrick = count($tricks);
+
+        return $this->render('home.html.twig', 
+            [
+                'tricks' => $tricks,
+                'totalTrick' => $totalTrick
+            ]);
     }
 
     #[Route('/tricks', name: "load_more_tricks", methods: ['GET'])]

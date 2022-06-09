@@ -21,9 +21,11 @@
             <div class="row" id="container-tricks">
                 {% include 'parts/_listTricks.html.twig' %}
             </div>
+            {% if totalTrick > 7 %}
             <div id="trickItemsLoad">
-                <button type="button" class="btn btn-secondary" id="load-more-tricks" data-url="{{ path('load_more_tricks') }}" data-nextpage="2">Load more</button>
+                <button type="button" class="btn btn-secondary" id="load-more-tricks" data-url="{{ path('load_more_tricks') }}" data-nextpage="2" data-total="{{ totalTrick }}">Load more</button>
             </div>
+            {% endif %}
             <div id="tricksArrowUp">
                 <a href="/#tricksList"><i class="fa-solid fa-arrow-up"></i></a>
             </div>
@@ -37,6 +39,7 @@
     <script>
         const containerTricks = document.querySelector('#container-tricks');
         const buttonElement = document.querySelector('#load-more-tricks');
+        const totalTrick = buttonElement.dataset.total;
 
         buttonElement.addEventListener('click', (e) => {
             const urlToCall = buttonElement.dataset.url;
@@ -46,7 +49,11 @@
             .then(data => {
                 if (data.code === 200) {
                     containerTricks.innerHTML += data.html;
+                    const totalTrickDisplayed = document.querySelectorAll('.trick-heading');
                     buttonElement.dataset.nextpage++;
+                    if (totalTrickDisplayed.length === parseIn(totalTrick)) {
+                        buttonElement.style.display = 'none';
+                    }
                 }
             })
         })

@@ -18,7 +18,7 @@ class RegistrationMailer {
     public function sendEmail($email, $token)
     {
         $email = (new TemplatedEmail())
-            ->from('register@snowtricks.com')
+            ->from('corenthin95.dev@outlook.fr')
             ->to(new Address($email))
             ->subject('Thanks for your registration on our website !')
             ->htmlTemplate('security/mailer/sendMailRegistration.html.twig')
