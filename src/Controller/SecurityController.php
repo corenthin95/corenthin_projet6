@@ -78,15 +78,15 @@ class SecurityController extends AbstractController {
         );
     }
 
-    #[Route('/forgot-password', name: 'forgot_password', methods: ['GET', 'POST'])]
-    public function forgotPassword(): Response
-    {
-        return $this->render('security/forgotPassword.html.twig');
-    }
+    // #[Route('/forgot-password', name: 'forgot_password', methods: ['GET', 'POST'])]
+    // public function forgotPassword(): Response
+    // {
+    //     return $this->render('security/forgotPassword.html.twig');
+    // }
 
-    #[Route('/recover-password', name: 'recover_password', methods: ['GET', 'POST'])]
-    public function recoverPassword(): Response
-    {
-        return $this->render('security/recoverPassword.html.twig');
-    }
+    // #[Route('/recover-password', name: 'recover_password', methods: ['GET', 'POST'])]
+    // public function recoverPassword(): Response
+    // {
+    //     return $this->render('security/recoverPassword.html.twig'); 
+    // }
 }

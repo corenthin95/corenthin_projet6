@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Snowtricks - Reset your password</title>{% endblock %}
+
+{% block body %}
+    {# <h1>Reset your password</h1>
+
+    {{ form_start(resetForm) }}
+        {{ form_row(resetForm.plainPassword) }}
+        <button class="btn btn-primary">Reset password</button>
+    {{ form_end(resetForm) }} #}
+
+
+    <section id="trickSecurity">
+        <div class="container">
+            <h1>Reset your password</h1>
+            {{ form_start(resetForm) }}
+            <div id="trickSecurityForm">
+                <div id="trickSecurityInput">
+                    <div id="trickSecurityPassword">
+                        {{ form_widget(resetForm.plainPassword) }}
+                    </div>
+                </div>
+                <div id="trickSecurityButton">
+                    <button class="btn btn-secondary">Ask for reset password</button>
+                </div>
+            </div>
+            {{ form_end(resetForm) }}
+        </div>
+    </section>
+{% endblock %}
