@@ -4,25 +4,89 @@
 
 
 {% block body %}
-    <section>
-        <div class="container" id="trickInfo">
-        {{ form_start(form) }}
-            <div id="trickInfoEdit">
-                <div id="trickInfoEditName">
+<section>
+    <div class="container" id="trickInfo">
+    {{ form_start(form) }}
+        <div id="trickInfoEdit">
+            <div id="trickInfoEditName">
+                <h3>{{ form_label(form.name) }}</h3>
                 {{ form_widget(form.name) }}
-                </div>
-                <div id="trickInfoEditContent">
-                {{ form_widget(form.description) }}
-                {{ form_row(form.mainImage) }}
-                </div>
-                <div id="trickInfoEditCategory">
-                    {{ form_widget(form.category) }}
-                </div>
-                <div id="trickInfoEditButtons">
-                    <button type="submit" class="btn btn-secondary">Create</button>
-                </div>
             </div>
-        {{ form_end(form) }}
+            <div id="trickInfoEditContent">
+                <h3>{{ form_label(form.description) }}</h3>
+                {{ form_widget(form.description) }}
+                {{ form_widget(form.mainImage) }}
+                <ul class="image" 
+                    data-index="{{ form.image|length > 0 ? form.image|last.vars.name + 1 : 0 }}" 
+                    data-prototype="{{ form_widget(form.image.vars.prototype)|e('html_attr') }}"
+                >
+                {% for imageCollection in form.image %}
+                    <li class="container-image">
+                        {{ form_widget(imageCollection) }}
+                    </li>
+                {% endfor %}
+                </ul>
+                <button type="button" class="add_item_image btn btn-secondary" data-collection-holder-class="image">Add image</button>
+            </div>
+            <div id="trickInfoEditCategory">
+                <h3>{{ form_label(form.category) }}</h3>
+                {{ form_widget(form.category) }}
+            </div>
+            <div id="trickInfoEditButtons">
+                <button type="submit" class="btn btn-secondary">Create</button>
+            </div>
         </div>
-    </section>
+    {{ form_end(form) }}
+    </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    const addFormDeleteImage = (item) => {
+        const removeFormButton = document.createElement('button');
+        removeFormButton.innerText = 'Delete this image';
+
+        item.append(removeFormButton);
+
+        removeFormButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            item.remove();
+        });
+    }
+    
+    const addFormToCollection = (e) => {
+        const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+        const item = document.createElement('li');
+
+        item.innerHTML = collectionHolder
+            .dataset
+            .prototype
+            .replace(
+                /__name__/g,
+                collectionHolder.dataset.index
+            );
+        
+        addFormDeleteImage(item);
+        collectionHolder.appendChild(item);
+
+        collectionHolder.dataset.index++;
+    };
+
+    addEventListener('click', (e) => {
+
+    });
+
+    document
+        .querySelectorAll('.add_item_image')
+        .forEach(btn => {
+            btn.addEventListener("click", addFormToCollection)
+        });
+    document
+        .querySelectorAll('ul.image .li')
+        .forEach((img) => {
+            addFormDeleteImage(img)
+        });
+</script>
 {% endblock %}

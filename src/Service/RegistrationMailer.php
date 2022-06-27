@@ -24,8 +24,7 @@ class RegistrationMailer {
             ->htmlTemplate('security/mailer/sendMailRegistration.html.twig')
             ->context([
                 'token' => $token,
-            ])
-        ;
+            ]);
 
         $this->mailer->send($email);
     }

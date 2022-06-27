@@ -6,7 +6,7 @@
     <section id="backgroundTrick">
         <div class="container" id="trickDisplay">
             <div>
-                <img id="featuredImg" src="{{'/uploads/' ~ trick.image  }}" alt="Image Trick">
+                <img id="featuredImg" src="{{ '/uploads/' ~ trick.mainImage }}" alt="mainImage">
                 {% if app.user %}
                 <div id="trickSpecifiedButtons">
                     <a href="{{ path('edit_trick', {slug: trick.slug}) }}"><i class="fa-solid fa-pen"></i></a>
@@ -59,30 +59,28 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        const containerTricks = document.querySelector('#trickCommentList');
-        const buttonElement = document.querySelector('#load-more-comments');
-        const totalComments = buttonElement.dataset.total;
-
-        buttonElement.addEventListener('click', (e) => {
-            const urlToCall = buttonElement.dataset.url;
-            const nextPage = buttonElement.dataset.nextpage;
-            fetch(`${urlToCall}?page=${nextPage}`)
-            .then(resp => resp.json())
-            .then(data => {
-                if (data.code === 200) {
-                    containerTricks.innerHTML += data.html;
-                    const totalCommentDisplayed = document.querySelectorAll('.comment-heading');
-                    buttonElement.dataset.nextpage++;
-                    if (totalCommentDisplayed.length === parseIn(totalComments)) {
-                        buttonElement.style.display = 'none';
-                    }
+<script>
+    const containerTricks = document.querySelector('#trickCommentList');
+    const buttonElement = document.querySelector('#load-more-comments');
+    const totalComments = buttonElement.dataset.total;
+    buttonElement.addEventListener('click', (e) => {
+        const urlToCall = buttonElement.dataset.url;
+        const nextPage = buttonElement.dataset.nextpage;
+        fetch(`${urlToCall}?page=${nextPage}`)
+        .then(resp => resp.json())
+        .then(data => {
+            if (data.code === 200) {
+                containerTricks.innerHTML += data.html;
+                const totalCommentDisplayed = document.querySelectorAll('.comment-heading');
+                buttonElement.dataset.nextpage++;
+                if (totalCommentDisplayed.length === parseIn(totalComments)) {
+                    buttonElement.style.display = 'none';
                 }
-            })
+            }
         })
-
-        function showDivCarousel() {
-            document.getElementById('showCarousel').style.display = "block";
-        }
-    </script>
+    })
+    function showDivCarousel() {
+        document.getElementById('showCarousel').style.display = "block";
+    }
+</script>
 {% endblock %}
