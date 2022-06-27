@@ -3,33 +3,33 @@
 {% block title %}<title>Snowtricks - Log In</title>{% endblock %}
 
 {% block body %}
-    <section id="trickSecurity">
-        <div class="container">
-            <h1>Log In</h1>
-            {% if error %}
-            <div id="trickLoginError">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-            {{ form_start(form) }}
-            <div id="trickSecurityForm">
-                <div id="trickSecurityInput">
-                    <h3>{{ form_label(form.email) }}</h3>
-                    {{ form_widget(form.email) }}
-                    {{ form_errors(form.email) }}
-                </div>
-                <div id="trickSecurityInput">
-                    <h3>{{ form_label(form.password) }}</h3>
-                    <div id="trickSecurityPassword">
-                        {{ form_widget(form.password) }}
-                    </div>
-                </div>
-                <div id="trickSecurityButton">
-                    <button type="submit" class="btn btn-secondary">Log in</button>
-                </div>
-                <div id="trickSecurityAlready">
-                    <a href="{{ path('forgot_password') }}">Forgot your password ?</a>
+<section id="trickSecurity">
+    <div class="container">
+        <h1>Log In</h1>
+        {% if error %}
+        <div id="trickLoginError">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        {{ form_start(form) }}
+        <div id="trickSecurityForm">
+            <div id="trickSecurityInput">
+                <h3>{{ form_label(form.email) }}</h3>
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div id="trickSecurityInput">
+                <h3>{{ form_label(form.password) }}</h3>
+                <div id="trickSecurityPassword">
+                    {{ form_widget(form.password) }}
                 </div>
             </div>
-            {{ form_end(form) }}
+            <div id="trickSecurityButton">
+                <button type="submit" class="btn btn-secondary">Log in</button>
+            </div>
+            <div id="trickSecurityAlready">
+                <a href="{{ path('forgot_password') }}">Forgot your password ?</a>
+            </div>
         </div>
-    </section>
+        {{ form_end(form) }}
+    </div>
+</section>
 {% endblock %}

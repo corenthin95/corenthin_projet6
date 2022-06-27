@@ -2,36 +2,41 @@
 
 namespace App\Entity;
 
+use DateTime;
+use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\Table;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-#[Table(name: 'corenthin_projet6_media')]
+#[Table(name: 'corenthin_projet6_video')]
 #[Entity()]
 
-class Media
+class Video
 {
     #[Id]
     #[Column(type: 'integer')]
     #[GeneratedValue(strategy: 'AUTO')]
     private int $id;
 
-    #[Column(type: 'string')]
-    private string $type;
+    #[Column(type: 'datetime')]
+    private \DateTime $createdAt;
 
     #[Column(type: 'string')]
     private string $path;
 
-    #[Column(type: 'string', nullable: true)]
-    private string $alt;
-
-    #[ManyToOne(targetEntity: 'App\Entity\Trick')]
+    #[ManyToOne(targetEntity: 'App\Entity\Trick', inversedBy: 'video')]
     #[JoinColumn(name: 'trick_id', referencedColumnName: 'id', nullable: true)]
-    private Trick $trick;
+    private ?Trick $trick;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * Get the value of id
@@ -42,11 +47,11 @@ class Media
     }
 
     /**
-     * Get the value of type
+     * Get the value of createdAt
      */ 
-    public function getType()
+    public function getCreatedAt()
     {
-        return $this->type;
+        return $this->createdAt;
     }
 
     /**
@@ -58,31 +63,11 @@ class Media
     }
 
     /**
-     * Get the value of alt
-     */ 
-    public function getAlt()
-    {
-        return $this->alt;
-    }
-
-    /**
      * Get the value of trick
      */ 
     public function getTrick()
     {
         return $this->trick;
-    }
-
-    /**
-     * Set the value of type
-     *
-     * @return  self
-     */ 
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
     }
 
     /**
@@ -93,18 +78,6 @@ class Media
     public function setPath($path)
     {
         $this->path = $path;
-
-        return $this;
-    }
-
-    /**
-     * Set the value of alt
-     *
-     * @return  self
-     */ 
-    public function setAlt($alt)
-    {
-        $this->alt = $alt;
 
         return $this;
     }
@@ -121,3 +94,4 @@ class Media
         return $this;
     }
 }
+

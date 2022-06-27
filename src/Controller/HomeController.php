@@ -14,7 +14,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'homepage', methods: ['GET', 'POST'])]
     public function index(TrickRepository $trickRepository): Response
     {   
-
         $tricks = $trickRepository->getMoreTricks(1);
         $totalTrick = count($tricks);
 

@@ -7,6 +7,7 @@ use App\Form\CommentType;
 use App\Entity\Comment;
 use App\Repository\TrickRepository;
 use App\Repository\CommentRepository;
+use App\Service\UploadFileService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -32,6 +33,7 @@ class TrickController extends AbstractController
         $trick = $trickRepository->findOneBy(['slug' => $slug]);
         $comment = $commentRepository->findCommentByTrick($trick->getId(), 1);
         $totalComments = $trick->getComment()->count();
+        $medias = array_merge($trick->getImage()->toArray(), $trick->getVideo()->toArray());
 
         $form = $this->formFactory->create(CommentType::class)
                                   ->handleRequest($request);
@@ -51,7 +53,8 @@ class TrickController extends AbstractController
             'trick' => $trick,
             'comment' => $comment,
             'totalComments' => $totalComments,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'medias' => $medias,
         ]);
     }
 
@@ -77,7 +80,7 @@ class TrickController extends AbstractController
     }
 
     #[Route ('/new-trick', name:'new_trick', methods: ['GET', 'POST'])]
-    public function newTrick(SluggerInterface $slugger, Request $request): Response 
+    public function newTrick(Request $request, UploadFileService $uploadFileService): Response 
     {
         $form = $this->formFactory->create(TrickType::class)
                                   ->handleRequest($request);
@@ -89,16 +92,14 @@ class TrickController extends AbstractController
             $trickMainImage = $trick->getMainImage();
 
             if($trickMainImage) {
-                $nameMainImage = pathinfo($trickMainImage->getClientOriginalName(), PATHINFO_FILENAME);
-                $slugMainImage = $slugger->slug($nameMainImage);
-                $newNameMainImage = $slugMainImage.'-'.uniqid().'-'.$trickMainImage->guessExtension();
+                $mainImage = $uploadFileService->upload($trickMainImage);
+                $trick->setMainImage($mainImage);
+            }
 
-                $trickMainImage->move(
-                    $this->getParameter('main_image_directory'),
-                    $newNameMainImage
-                );
-
-                $trick->setImage($newNameMainImage);
+            foreach ($trick->getImage() as $image) {
+                $imageFilename = $uploadFileService->upload($image->getFile());
+                $image->setFilename($imageFilename);
+                $trick->addImage($image);
             }
 
             $this->entityManager->persist($trick);

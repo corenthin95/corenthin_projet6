@@ -7,6 +7,7 @@ use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +21,7 @@ class TrickType extends AbstractType
                 'name',
                 TextareaType::class,
                 [
-                    'label' => 'Trick Title',
+                    'label' => 'Title',
                     'required' => false
                 ]
             )
@@ -28,7 +29,7 @@ class TrickType extends AbstractType
                 'description',
                 TextareaType::class,
                 [
-                    'label' => 'Trick Description',
+                    'label' => 'Description',
                     'required' => false
                 ]
             )
@@ -36,6 +37,7 @@ class TrickType extends AbstractType
                 'category',
                 EntityType::class,
                 [
+                    'label' => 'Category',
                     'class' => Category::class,
                     'choice_label' => 'name'
                 ]
@@ -44,7 +46,20 @@ class TrickType extends AbstractType
                 'mainImage',
                 FileType::class,
                 [
-                    'label' => 'Upload files'
+                    'label' => 'Upload files',
+                    'required' => false
+                ]
+            )
+            ->add(
+                'image',
+                CollectionType::class,
+                [
+                    'label' => false,
+                    'entry_type' => ImageCollectionType::class,
+                    'entry_options' => false,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false
                 ]
             );
     }

@@ -1,7 +1,7 @@
 {% for tricks in tricks %}
 <div class="col-lg-3 col-xs-12 trick-heading">
     <div class="card">
-        <img class="card-img-top" src="{{'/uploads/' ~ tricks.image  }}" alt="Card image cap">
+        <img class="card-img-top" src="{{ '/uploads/' ~ tricks.mainImage  }}" alt="mainImage">
         <div class="card-body">
             <a href="{{ path('show_trick', {slug: tricks.slug}) }}"><h3 class="card-title">{{ tricks.name }}</h3></a>
             {% if app.user %}

@@ -44,9 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Column(type: 'json')]
     private array $roles;
 
-    #[ManyToOne(targetEntity: 'App\Entity\Media')]
-    #[JoinColumn(name: 'media_id', referencedColumnName: 'id', nullable: true)]
-    private Media $media;
+    #[ManyToOne(targetEntity: 'App\Entity\Picture')]
+    #[JoinColumn(name: 'picture_id', referencedColumnName: 'id', nullable: true)]
+    private Picture $picture;
 
     #[Column(type: 'string', nullable: true)]
     private string $token;
@@ -90,9 +90,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->roles;
     }
 
-    public function getMedia()
+    public function getPicture()
     {
-        return $this->media;
+        return $this->picture;
     }
 
     public function getToken(): ?string
@@ -161,9 +161,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @return  self
      */ 
-    public function setMedia($media)
+    public function setPicture($picture)
     {
-        $this->media = $media;
+        $this->picture = $picture;
 
         return $this;
     }
